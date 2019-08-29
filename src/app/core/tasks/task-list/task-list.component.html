@@ -1,12 +1,13 @@
-<div class="container">
+<div class="container-fluid">
 
   <!-- card with shadow - mb-3 : space between cards  -->
   <div class="card card-task shadow-sm mb-3" *ngFor="let task of tasks">
     <div class="card-body">
       <div class="row">
-        <app-category-icon srcImg="../../../../assets/img/category/budget_car_64.png"></app-category-icon>
-        <div class="col">
-
+        <div class="col-2">
+          <app-category-icon srcImg="../../../../assets/img/category/budget_car_32.png"></app-category-icon>
+        </div>
+        <div class="col-10">
           <h5 class="card-title">{{ task.description }}</h5>
           <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
         </div>
