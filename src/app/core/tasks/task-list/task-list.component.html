@@ -1,0 +1,11 @@
+<div class="card-container">
+  <ul>
+    <li *ngFor="let task of tasks">
+      <div class="card">
+        <app-category-icon srcImg="../../../../assets/img/category/budget_car_64.png"></app-category-icon>
+        <div class="spacer"></div>
+        <div>{{ task.description }}</div>
+      </div>
+    </li>
+  </ul>
+</div>
