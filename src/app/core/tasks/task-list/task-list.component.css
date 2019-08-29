@@ -1,12 +1,12 @@
 .card-task {
   border-radius: 0%;
-  border: 1px solid darkgrey;
 }
 
 .card-task .card-body {
   margin: 0;
   padding: 0.5em;
 }
+
 .card-task .card-footer {
   background-color: inherit;
   margin: 0;

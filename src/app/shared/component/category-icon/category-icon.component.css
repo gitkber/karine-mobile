@@ -18,7 +18,7 @@
   right: 0;
   height: 1.5em;
   width: 1.5em;
-  background-color: #d6cbf3;
+  background-color: var(--color-one);
   border-radius: 50%;
   border-bottom-right-radius: 0%;
   z-index: 1;
@@ -30,7 +30,7 @@
   left: 0;
   height: 1.5em;
   width: 1.5em;
-  background-color: #d6cbf3;
+  background-color: var(--color-one);
   border-radius: 50%;
   border-top-left-radius: 0%;
   z-index: 0;

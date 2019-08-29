@@ -1,5 +1,9 @@
+:root {
+  --color-one: #d6cbf3;
+}
+
 body {
-  background-color: lightgrey;
+  background-color: #eeeeee;
 }
 
 @media (max-width: 640px) {
@@ -13,7 +17,7 @@ body {
     width: auto;
     margin: 0;
     padding: 0;
-    background-color: lightgrey;
+    /*background-color: lightgrey;*/
   }
 
   /* fixer une largeur maximale de 100% aux éléments potentiellement problématiques */
