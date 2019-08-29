@@ -39,9 +39,9 @@ export class TaskListComponent implements OnInit {
       case Category.WELLNESS:
         return '../../../../assets/img/category/health_prenatal_32.png';
       case Category.OBJECTIVE:
-        return '../../../../assets/img/category/health_apple_32.png';
+        return '../../../../assets/img/category/objective_target_32.png';
       case Category.OTHER:
-        return '../../../../assets/img/category/other_newspaper_32.png';
+        return '../../../../assets/img/category/other_catalog_64.png';
     }
     return '';
   }
