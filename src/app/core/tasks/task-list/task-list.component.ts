@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { Task } from '../task';
+import { Category, Task } from '../task';
 import { TaskService } from '../task.service';
 
 @Component({
@@ -30,4 +30,19 @@ export class TaskListComponent implements OnInit {
     });
   }
 
+  getPath(category: Category): string {
+    switch (category) {
+      case Category.HOME:
+        return '../../../../assets/img/category/budget_house2_32.png';
+      case Category.TRANSPORT:
+        return '../../../../assets/img/category/budget_car_32.png';
+      case Category.WELLNESS:
+        return '../../../../assets/img/category/health_prenatal_32.png';
+      case Category.OBJECTIVE:
+        return '../../../../assets/img/category/health_apple_32.png';
+      case Category.OTHER:
+        return '../../../../assets/img/category/other_newspaper_32.png';
+    }
+    return '';
+  }
 }

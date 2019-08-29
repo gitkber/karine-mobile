@@ -4,3 +4,6 @@ header {
 .toolbar {
   background-color: var(--color-one);
 }
+footer {
+  background-color: var(--color-one);
+}

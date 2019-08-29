@@ -4,6 +4,7 @@
 
 body {
   background-color: #eeeeee;
+  font-family: "Calibri", "Times New Roman", serif;
 }
 
 @media (max-width: 640px) {

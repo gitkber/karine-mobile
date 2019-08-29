@@ -1,6 +1,13 @@
 export class Task {
   key: string;
   description: string;
-  // age: number;
-  // active = true;
+  category: Category;
+}
+
+export enum Category {
+  HOME = 'HOME',
+  TRANSPORT = 'TRANSPORT',
+  WELLNESS = 'WELLNESS',
+  OBJECTIVE = 'OBJECTIVE',
+  OTHER = 'OTHER',
 }
