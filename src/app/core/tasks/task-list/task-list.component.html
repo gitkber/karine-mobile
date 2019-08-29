@@ -1,11 +1,20 @@
-<div class="card-container">
-  <ul>
-    <li *ngFor="let task of tasks">
-      <div class="card">
+<div class="container">
+
+  <!-- card with shadow - mb-3 : space between cards  -->
+  <div class="card card-task shadow-sm mb-3" *ngFor="let task of tasks">
+    <div class="card-body">
+      <div class="row">
         <app-category-icon srcImg="../../../../assets/img/category/budget_car_64.png"></app-category-icon>
-        <div class="spacer"></div>
-        <div>{{ task.description }}</div>
+        <div class="col">
+
+          <h5 class="card-title">{{ task.description }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+        </div>
       </div>
-    </li>
-  </ul>
+    </div>
+    <div class="card-footer">
+      2 days ago
+    </div>
+  </div>
+
 </div>
