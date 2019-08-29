@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Category, Task } from '../task';
 import { TaskService } from '../task.service';
@@ -10,6 +10,7 @@ import { TaskService } from '../task.service';
 })
 export class TaskListComponent implements OnInit {
 
+  @Input() editTaskList: boolean = false;
   tasks: Task[];
 
   constructor(private taskService: TaskService) { }
@@ -28,6 +29,10 @@ export class TaskListComponent implements OnInit {
     ).subscribe(tasks => {
       this.tasks = tasks;
     });
+  }
+
+  editTask(task: Task) {
+    console.log('edit the task ' + task.key);
   }
 
   getPath(category: Category): string {

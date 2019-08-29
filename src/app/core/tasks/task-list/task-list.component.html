@@ -3,7 +3,7 @@
   <!-- card with shadow - mb-3 : space between cards  -->
   <div class="card card-task shadow-sm mb-2" *ngFor="let task of tasks">
     <div class="card-body">
-      <div class="row">
+      <div class="row" (click)="editTask(task)">
         <div class="col-2">
           <app-category-icon [srcImg]="getPath(task.category)"></app-category-icon>
         </div>
@@ -12,7 +12,7 @@
           <div class="card-subtitle text-muted">{{task.category}}</div>
         </div>
       </div>
-      <!--<div class="arrow-right"></div>-->
+      <div *ngIf="editTaskList" class="arrow-right" (click)="editTask(task)"></div>
     </div>
     <div class="card-footer">
       <div class="card-subtitle text-muted">Aujourd'hui</div>
