@@ -18,71 +18,58 @@
     <div id="accordion">
       <form [formGroup]="formGroup">
         <!-- description -->
-        <div class="card shadow-sm mb-2">
-          <div class="card-header" id="headingOne">
-            <h5 class="mb-0">
-              <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
-                      aria-controls="collapseOne">
-                <span *ngIf="isNewTask">Description</span>{{ task.description }}
-              </button>
-            </h5>
+        <app-card-accordion collapseId="collapseOne" [showCollapse]="isNewTask">
+          <div header>
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                    aria-controls="collapseOne">
+              <span *ngIf="isNewTask">Description</span>{{ task.description }}
+            </button>
           </div>
-          <div id="collapseOne" class="collapse" [class.show]="isNewTask" aria-labelledby="headingOne"
-               data-parent="#accordion">
-            <div class="card-body">
-              <div class="form-group">
-                <label for="description">Description</label>
-                <input type="text" class="form-control" id="description" formControlName="description" required>
-              </div>
+          <div body>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <input type="text" class="form-control" id="description" formControlName="description" required>
             </div>
           </div>
-        </div>
+        </app-card-accordion>
         <!-- category -->
-        <div class="card shadow-sm mb-2">
-          <div class="card-header" id="headingTwo">
-            <h5 class="mb-0">
-              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
-                      aria-expanded="false" aria-controls="collapseTwo">
-                <span *ngIf="isNewTask">Category</span>{{ task.category }}
-              </button>
-            </h5>
+        <app-card-accordion collapseId="collapseTwo">
+          <div header>
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="false" aria-controls="collapseTwo">
+              <span *ngIf="isNewTask">Category</span>{{ task.category }}
+            </button>
           </div>
-          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-            <div class="card-body">
-              <div class="form-group">
-                <div *ngFor="let item of allCategory()">
-                  <label>
-                    <input type="radio" value="{{ item }}" formControlName="category">
-                    <span>{{ item }}</span>
-                  </label>
-                </div>
+          <div body>
+            <div class="form-group">
+              <div *ngFor="let item of allCategory()">
+                <label>
+                  <input type="radio" value="{{ item }}" formControlName="category">
+                  <span>{{ item }}</span>
+                </label>
               </div>
             </div>
           </div>
-        </div>
+        </app-card-accordion>
         <!-- Repeat -->
-        <div class="card shadow-sm mb-2">
-          <div class="card-header" id="headingThree">
-            <h5 class="mb-0">
-              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree"
-                      aria-expanded="false" aria-controls="collapseThree">
-                <span *ngIf="isNewTask">Repeat</span>1 fois par semaine (TODO)
-              </button>
-            </h5>
+        <app-card-accordion collapseId="collapseThree">
+          <div header>
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree"
+                    aria-expanded="false" aria-controls="collapseThree">
+              <span *ngIf="isNewTask">Repeat</span>1 fois par semaine (TODO)
+            </button>
           </div>
-          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-            <div class="card-body">
-              <p>une seul fois</p>
-              <p>tous les jours</p>
-              <p>une fois par semaine</p>
-              <p>une fois par mois</p>
-              <p>une fois par an</p>
-              <p>tous les ? jours</p>
-              <p>tous les ? mois</p>
-              <p>tous les ? ans</p>
-            </div>
+          <div body>
+            <p>une seul fois</p>
+            <p>tous les jours</p>
+            <p>une fois par semaine</p>
+            <p>une fois par mois</p>
+            <p>une fois par an</p>
+            <p>tous les ? jours</p>
+            <p>tous les ? mois</p>
+            <p>tous les ? ans</p>
           </div>
-        </div>
+        </app-card-accordion>
 
       </form>
     </div>

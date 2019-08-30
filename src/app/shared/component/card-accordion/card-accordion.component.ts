@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-card-accordion',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./card-accordion.component.css']
 })
 export class CardAccordionComponent implements OnInit {
+
+  @Input() collapseId: string;
+  @Input() showCollapse: boolean;
 
   constructor() { }
 
