@@ -7,12 +7,13 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class CardAccordionComponent implements OnInit {
 
-  @Input() collapseId: string;
-  @Input() collapse: boolean;
-  @Input() nextCard: boolean;
+  @Input() cardAccordionId: string;
+  @Input() nextCardAccordionId: string;
+
+  @Input() open: boolean;
+  @Input() stepAction: boolean;
+
   @Output() saveCard: EventEmitter<any> = new EventEmitter<any>();
-  @Input() openNextCardName: string;
-  @Output() collapseNextCard: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { }
 
@@ -20,7 +21,7 @@ export class CardAccordionComponent implements OnInit {
   }
 
   collapseCard() {
-    this.collapse = true;
+    this.open = true;
   }
 
 }

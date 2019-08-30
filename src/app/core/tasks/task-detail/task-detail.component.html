@@ -18,8 +18,7 @@
     <div id="accordion">
       <form [formGroup]="formGroup">
         <!-- description -->
-        <app-card-accordion collapseId="collapseOne" [collapse]="isNewTask" [nextCard]="isNewTask" openNextCardName="collapseTwo"
-                            (collapseNextCard)="collapseTwo.collapseCard()"
+        <app-card-accordion cardAccordionId="collapseOne" nextCardAccordionId="collapseTwo" [open]="isNewTask" [stepAction]="isNewTask"
                             (saveCard)="onSubmit()">
           <div header>
             <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
@@ -33,8 +32,7 @@
           </div>
         </app-card-accordion>
         <!-- category -->
-        <app-card-accordion collapseId="collapseTwo" [nextCard]="isNewTask" openNextCardName="collapseThree"
-                            (collapseNextCard)="collapseThree.collapseCard()"
+        <app-card-accordion cardAccordionId="collapseTwo" nextCardAccordionId="collapseThree" [stepAction]="isNewTask"
                             (saveCard)="onSubmit()" #collapseTwo>
           <div header>
             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
@@ -52,12 +50,12 @@
           </div>
         </app-card-accordion>
         <!-- Repeat -->
-        <app-card-accordion collapseId="collapseThree" nextCard="true"
+        <app-card-accordion cardAccordionId="collapseThree" nextCard="true"
                             (saveCard)="onSubmit()" #collapseThree>
           <div header>
             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree"
                     aria-expanded="false" aria-controls="collapseThree">
-              <span *ngIf="isNewTask">Repeat</span>1 fois par semaine (TODO)
+              <span *ngIf="isNewTask">Repeat</span> 1 fois par semaine (TODO)
             </button>
           </div>
           <div body>
