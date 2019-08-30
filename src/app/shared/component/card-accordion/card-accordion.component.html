@@ -4,9 +4,13 @@
       <ng-content select="[header]"></ng-content>
     </h5>
   </div>
-  <div [id]="collapseId" class="collapse" [class.show]="showCollapse" data-parent="#accordion">
+  <div [id]="collapseId" class="collapse" [class.show]="collapse" data-parent="#accordion">
     <div class="card-body">
       <ng-content select="[body]"></ng-content>
+    </div>
+    <div class="card-footer">
+      <button *ngIf="nextCard" class="btn btn-success" (click)="collapse = false; collapseNextCard.emit()">Next</button>
+      <button *ngIf="!nextCard" class="btn btn-success" (click)="saveCard.emit()">Save</button>
     </div>
   </div>
 </div>

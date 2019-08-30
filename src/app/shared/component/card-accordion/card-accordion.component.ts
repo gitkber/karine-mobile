@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-card-accordion',
@@ -8,11 +8,19 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CardAccordionComponent implements OnInit {
 
   @Input() collapseId: string;
-  @Input() showCollapse: boolean;
+  @Input() collapse: boolean;
+  @Input() nextCard: boolean;
+  @Output() saveCard: EventEmitter<any> = new EventEmitter<any>();
+  @Input() openNextCardName: string;
+  @Output() collapseNextCard: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  collapseCard() {
+    this.collapse = true;
   }
 
 }

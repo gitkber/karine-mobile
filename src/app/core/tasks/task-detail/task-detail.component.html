@@ -18,7 +18,9 @@
     <div id="accordion">
       <form [formGroup]="formGroup">
         <!-- description -->
-        <app-card-accordion collapseId="collapseOne" [showCollapse]="isNewTask">
+        <app-card-accordion collapseId="collapseOne" [collapse]="isNewTask" [nextCard]="isNewTask" openNextCardName="collapseTwo"
+                            (collapseNextCard)="collapseTwo.collapseCard()"
+                            (saveCard)="onSubmit()">
           <div header>
             <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
                     aria-controls="collapseOne">
@@ -26,14 +28,14 @@
             </button>
           </div>
           <div body>
-            <div class="form-group">
-              <label for="description">Description</label>
-              <input type="text" class="form-control" id="description" formControlName="description" required>
-            </div>
+            <label for="description">Description</label>
+            <input type="text" class="form-control" id="description" formControlName="description" required>
           </div>
         </app-card-accordion>
         <!-- category -->
-        <app-card-accordion collapseId="collapseTwo">
+        <app-card-accordion collapseId="collapseTwo" [nextCard]="isNewTask" openNextCardName="collapseThree"
+                            (collapseNextCard)="collapseThree.collapseCard()"
+                            (saveCard)="onSubmit()" #collapseTwo>
           <div header>
             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="false" aria-controls="collapseTwo">
@@ -41,18 +43,17 @@
             </button>
           </div>
           <div body>
-            <div class="form-group">
-              <div *ngFor="let item of allCategory()">
-                <label>
-                  <input type="radio" value="{{ item }}" formControlName="category">
-                  <span>{{ item }}</span>
-                </label>
-              </div>
+            <div *ngFor="let item of allCategory()">
+              <label>
+                <input type="radio" value="{{ item }}" formControlName="category">
+                <span>{{ item }}</span>
+              </label>
             </div>
           </div>
         </app-card-accordion>
         <!-- Repeat -->
-        <app-card-accordion collapseId="collapseThree">
+        <app-card-accordion collapseId="collapseThree" nextCard="true"
+                            (saveCard)="onSubmit()" #collapseThree>
           <div header>
             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree"
                     aria-expanded="false" aria-controls="collapseThree">
@@ -75,7 +76,7 @@
     </div>
   </div>
 
-  <button type="submit" class="btn btn-success" (click)="onSubmit()">Submit</button>
+<!--  <button type="submit" class="btn btn-success" (click)="onSubmit()">Submit</button>-->
 
 </div>
 
