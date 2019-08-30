@@ -1,16 +1,22 @@
 <div class="toolbar container">
   <div class="row justify-content-end">
+    <h3 [hidden]="!isNewTask">Create Task</h3>
+    <h3 [hidden]="isNewTask">Update Task</h3>
     <div class="col">
       <a class="circle-link float-right" [routerLink]="['/']">
-        <i class="fas fa-arrow-left"></i>
+        <i class="fas fa-times"></i>
       </a>
-      <!--    <a [routerLink]="['/movie', movie.id]">-->
-<!--      <div class="custom-control custom-switch float-right">-->
-<!--        <input type="checkbox" class="custom-control-input" id="customSwitch1">-->
-<!--        <label class="custom-control-label" for="customSwitch1"><i class="fa fa-edit"></i></label>-->
-<!--      </div>-->
     </div>
   </div>
 </div>
 
-<p>task-detail works!</p>
+<div *ngIf="formGroup">
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input type="text" class="form-control" id="description" formControlName="description" required>
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>

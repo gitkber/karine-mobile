@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 import { Task } from './task';
 
 @Injectable({
@@ -15,6 +15,10 @@ export class TaskService {
     this.tasksRef = db.list(this.dbPath);
   }
 
+  getTasksList(): AngularFireList<Task> {
+    return this.tasksRef;
+  }
+
   createTask(task: Task): void {
     this.tasksRef.push(task);
   }
@@ -27,11 +31,11 @@ export class TaskService {
     return this.tasksRef.remove(key);
   }
 
-  getTasksList(): AngularFireList<Task> {
-    return this.tasksRef;
-  }
-
   deleteAll(): Promise<void> {
     return this.tasksRef.remove();
+  }
+
+  getTask(key: string): AngularFireObject<Task> {
+    return this.db.object(this.dbPath + `/${key}`);
   }
 }

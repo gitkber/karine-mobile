@@ -33,7 +33,7 @@ export class TaskListComponent implements OnInit {
   }
 
   editTask(task: Task) {
-    this.router.navigate(['/taskDetail', task.key])
+    this.router.navigate(['/taskDetail', task.key]);
     console.log('edit the task ' + task.key);
   }
 
