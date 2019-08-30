@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Category, Task } from '../task';
 import { TaskService } from '../task.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-task-list',
@@ -10,10 +11,10 @@ import { TaskService } from '../task.service';
 })
 export class TaskListComponent implements OnInit {
 
-  @Input() editTaskList: boolean = false;
+  editTaskList: boolean = false;
   tasks: Task[];
 
-  constructor(private taskService: TaskService) { }
+  constructor(private taskService: TaskService, private router: Router) { }
 
   ngOnInit() {
     this.getTasksList();
@@ -32,6 +33,7 @@ export class TaskListComponent implements OnInit {
   }
 
   editTask(task: Task) {
+    this.router.navigate(['/taskDetail', task.key])
     console.log('edit the task ' + task.key);
   }
 
@@ -49,5 +51,9 @@ export class TaskListComponent implements OnInit {
         return '../../../../assets/img/category/other_catalog_64.png';
     }
     return '';
+  }
+
+  changeModeTask() {
+    this.editTaskList = !this.editTaskList;
   }
 }

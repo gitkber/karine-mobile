@@ -2,35 +2,12 @@
   &nbsp;
 </header>
 
-<div class="toolbar container">
-  <div class="row justify-content-end">
-    <div class="col">
-      <a class="circle-link float-right" title="Join the Conversation on Gitter"
-         target="_blank" rel="noopener">
-        <i class="fas fa-plus"></i>
-      </a>
-      <div class="custom-control custom-switch float-right">
-        <input type="checkbox" class="custom-control-input" id="customSwitch1">
-        <label class="custom-control-label" for="customSwitch1"><i class="fa fa-edit"></i></label>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div>&nbsp;</div>
-
-<div class="content" role="main">
-
-  <app-task-list [editTaskList]="false"></app-task-list>
-
-</div>
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<router-outlet></router-outlet>
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 <div>&nbsp;</div>
 
 <footer>
   Copyright
 </footer>
-
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<router-outlet></router-outlet>
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
