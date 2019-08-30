@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Task } from '../task';
+import { Category, Task } from '../task';
 import { TaskService } from '../task.service';
 import { map } from 'rxjs/operators';
 
@@ -15,7 +15,6 @@ export class TaskDetailComponent implements OnInit {
   task: Task;
 
   formGroup: FormGroup;
-  submitted = false;
   isNewTask: boolean;
 
   constructor(private route: ActivatedRoute, private taskService: TaskService, private formBuilder: FormBuilder, private router: Router) { }
@@ -36,32 +35,31 @@ export class TaskDetailComponent implements OnInit {
     }
   }
 
-  initFormGroup() {
+  private initFormGroup() {
     this.formGroup = this.formBuilder.group({
       key: [this.task.key],
-      description: [this.task.description, Validators.required]
+      description: [this.task.description, Validators.required],
+      category: [this.task.category, Validators.required]
     });
+  }
+
+  allCategory() {
+    return Object.keys(Category);
   }
 
   // deleteMovie() {
   //   this.moviesService.deleteMovie(this.movie.id).subscribe(() => this.router.navigate(['/movies']));
   // }
 
-  newTask(): void {
-    this.submitted = false;
-    this.task = new Task();
-  }
-
   onSubmit() {
-    this.submitted = true;
-
     this.task.description = this.formGroup.controls.description.value;
+    this.task.category = this.formGroup.controls.category.value;
 
     if (this.isNewTask) {
       this.taskService.createTask(this.task);
     } else {
       this.taskService
-        .updateTask(this.task.key, {description: this.task.description})
+        .updateTask(this.task.key, {description: this.task.description, category: this.task.category})
         .catch(err => console.log(err));
     }
     this.router.navigate(['/']);

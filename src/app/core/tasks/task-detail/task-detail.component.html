@@ -10,8 +10,19 @@
   </div>
 </div>
 
+
 <div *ngIf="formGroup">
   <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <!-- category -->
+    <div class="form-group">
+      <div *ngFor="let item of allCategory()">
+        <label>
+          <input type="radio" value="{{ item }}" formControlName="category">
+          <span>{{ item }}</span>
+        </label>
+      </div>
+    </div>
+    <!-- description -->
     <div class="form-group">
       <label for="description">Description</label>
       <input type="text" class="form-control" id="description" formControlName="description" required>
