@@ -1,4 +1,4 @@
-<div class="card card-task shadow-sm mb-2">
+<div class="card shadow-sm mb-2">
   <div class="card-header">
     <h5 class="mb-0">
       <ng-content select="[header]"></ng-content>
@@ -9,8 +9,10 @@
       <ng-content select="[body]"></ng-content>
     </div>
     <div class="card-footer">
-      <button *ngIf="stepAction" type="button" class="btn btn-link collapsed" data-toggle="collapse" [attr.data-target]="'#' + nextCardAccordionId" >{{nextCardAccordionId}}</button>
-      <button *ngIf="!stepAction" class="btn btn-success" (click)="saveCard.emit()">Save</button>
+      <div class="float-right">
+          <button *ngIf="stepAction" type="button" class="btn btn-link collapsed" data-toggle="collapse" [attr.data-target]="'#' + nextCardAccordionId" >NEXT</button>
+          <button *ngIf="!stepAction" class="btn btn-success" (click)="saveCard.emit()">Save</button>
+      </div>
     </div>
   </div>
 </div>
