@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Category, Task } from '../task';
+import { Category, Repeat, Task } from '../task';
 import { TaskService } from '../task.service';
 import { map } from 'rxjs/operators';
 
@@ -39,12 +39,18 @@ export class TaskDetailComponent implements OnInit {
     this.formGroup = this.formBuilder.group({
       key: [this.task.key],
       description: [this.task.description, Validators.required],
-      category: [this.task.category, Validators.required]
+      category: [this.task.category, Validators.required],
+      repeat: [this.task.repeat, Validators.required],
+      extraRepeat: [this.task.extraRepeat]
     });
   }
 
   allCategory() {
     return Object.keys(Category);
+  }
+
+  allRepeat() {
+    return Object.keys(Repeat);
   }
 
   // deleteMovie() {
@@ -54,12 +60,14 @@ export class TaskDetailComponent implements OnInit {
   onSubmit() {
     this.task.description = this.formGroup.controls.description.value;
     this.task.category = this.formGroup.controls.category.value;
+    this.task.repeat = this.formGroup.controls.repeat.value;
+    this.task.extraRepeat = this.formGroup.controls.extraRepeat.value;
 
     if (this.isNewTask) {
       this.taskService.createTask(this.task);
     } else {
       this.taskService
-        .updateTask(this.task.key, {description: this.task.description, category: this.task.category})
+        .updateTask(this.task.key, {description: this.task.description, category: this.task.category, repeat: this.task.repeat, extraRepeat: this.task.extraRepeat})
         .catch(err => console.log(err));
     }
     this.router.navigate(['/']);

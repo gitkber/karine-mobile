@@ -55,18 +55,20 @@
           <div header>
             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree"
                     aria-expanded="false" aria-controls="collapseThree">
-              <span *ngIf="isNewTask">Repeat</span> 1 fois par semaine (TODO)
+              <span *ngIf="!task.repeat">Repeat</span>{{ task.repeat }} {{ task.extraRepeat }}
             </button>
           </div>
           <div body>
-            <p>une seul fois</p>
-            <p>tous les jours</p>
-            <p>une fois par semaine</p>
-            <p>une fois par mois</p>
-            <p>une fois par an</p>
-            <p>tous les ? jours</p>
-            <p>tous les ? mois</p>
-            <p>tous les ? ans</p>
+            <div *ngFor="let item of allRepeat()">
+              <label>
+                <input type="radio" value="{{ item }}" formControlName="repeat">
+                <span>{{ item }}</span>
+              </label>
+            </div>
+            <div class="formGroup">
+              <label for="extraRepeat">Extra</label>
+              <input type="text" class="form-control" id="extraRepeat" formControlName="extraRepeat" required>
+            </div>
           </div>
         </app-card-accordion>
 
