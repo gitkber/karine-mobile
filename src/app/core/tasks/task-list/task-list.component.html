@@ -20,19 +20,22 @@
   <!-- card with shadow - mb-3 : space between cards  -->
   <div class="card card-task shadow-sm mb-2" *ngFor="let task of tasks">
     <div class="card-body">
-      <div class="row" (click)="editTask(task)">
+      <div class="row">
         <div class="col-2">
           <app-category-icon [srcImg]="getPath(task.category)"></app-category-icon>
         </div>
-        <div class="col-10">
+        <div class="col-8" (click)="editTask(task)">
           <div class="card-title">{{ task.description }}</div>
           <div class="card-subtitle text-muted">{{task.repeat}} {{task.extraRepeat}}</div>
+        </div>
+        <div class="col-1">
+          <i class="fa fa-thumbs-up" (click)="acceptTask(task)"></i>
         </div>
       </div>
       <div *ngIf="editTaskList" class="arrow-right" (click)="editTask(task)"></div>
     </div>
     <div class="card-footer">
-      <div class="card-subtitle text-muted">Aujourd'hui</div>
+      <div class="card-subtitle text-muted">Aujourd'hui {{ task.nextRepeat | date : 'fullDate' }}</div>
     </div>
   </div>
 

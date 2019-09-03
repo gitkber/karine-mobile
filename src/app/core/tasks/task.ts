@@ -1,9 +1,16 @@
+export class HistoryTask {
+  key: string;
+
+  constructor(taskKey: string, description: string, category: Category) {}
+}
+
 export class Task {
   key: string;
   description: string;
   category: Category;
   repeat: Repeat;
   extraRepeat: string;
+  nextRepeat: Date;
 }
 
 export enum Category {
@@ -21,6 +28,6 @@ export enum Repeat {
   ONE_BY_MONTH = 'ONE_BY_MONTH',
   ONE_BY_YEAR = 'ONE_BY_YEAR',
   EVERY_X_DAYS = 'EVERY_X_DAYS',
-  EVERY_X_MOIS = 'EVERY_X_MOIS',
+  EVERY_X_MONTH = 'EVERY_X_MOIS',
   EVERY_X_YEAR = 'EVERY_X_YEAR',
 }

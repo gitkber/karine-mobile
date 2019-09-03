@@ -56,4 +56,9 @@ export class TaskListComponent implements OnInit {
   changeModeTask() {
     this.editTaskList = !this.editTaskList;
   }
+
+  acceptTask(task: Task) {
+    console.log('accept the task ' + task.key);
+    this.taskService.acceptTask(task);
+  }
 }
