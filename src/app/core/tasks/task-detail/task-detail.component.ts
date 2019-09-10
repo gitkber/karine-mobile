@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Category, HistoryTask, Repeat, Task } from '../task';
 import { TaskService } from '../task.service';
 import { map } from 'rxjs/operators';
+import { DateToStringPipe } from '../../../shared/pipe/date-to-string.pipe';
 
 @Component({
   selector: 'app-task-detail',
@@ -18,7 +19,13 @@ export class TaskDetailComponent implements OnInit {
   formGroup: FormGroup;
   isNewTask: boolean;
 
-  constructor(private route: ActivatedRoute, private taskService: TaskService, private formBuilder: FormBuilder, private router: Router) { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private taskService: TaskService,
+    private dateToStringPipe: DateToStringPipe
+  ) { }
 
   ngOnInit() {
     const id: string = this.route.snapshot.paramMap.get('id');
@@ -36,15 +43,12 @@ export class TaskDetailComponent implements OnInit {
 
       this.taskService.getHistoryTasksList(id).snapshotChanges().pipe(
         map(changes =>
-          changes.map(c =>
-            ({key: c.payload.key, ...c.payload.val()})
-          )
+          changes.map(c => ({key: c.payload.key, ...c.payload.val()}))
         )
       ).subscribe(historyTasks => {
         this.historyTasks = historyTasks;
       });
     }
-
   }
 
   private initFormGroup() {
@@ -74,6 +78,7 @@ export class TaskDetailComponent implements OnInit {
     this.task.category = this.formGroup.controls.category.value;
     this.task.repeat = this.formGroup.controls.repeat.value;
     this.task.extraRepeat = this.formGroup.controls.extraRepeat.value;
+    this.task.nextRepeat = this.dateToStringPipe.transform(new Date());
 
     if (this.isNewTask) {
       this.taskService.createTask(this.task);

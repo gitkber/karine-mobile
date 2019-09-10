@@ -12,7 +12,7 @@ export class Task {
   category: Category;
   repeat: Repeat;
   extraRepeat: string;
-  nextRepeat: Date;
+  nextRepeat: string;
 }
 
 export enum Category {

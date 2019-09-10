@@ -35,7 +35,7 @@
       <div *ngIf="editTaskList" class="arrow-right" (click)="editTask(task)"></div>
     </div>
     <div class="card-footer">
-      <div class="card-subtitle text-muted">Aujourd'hui {{ task.nextRepeat | date : 'fullDate' }}</div>
+      <div class="card-subtitle text-muted">{{ task.nextRepeat | stringToDate | date : 'EEEE, d MMMM yyyy' }}</div>
     </div>
   </div>
 

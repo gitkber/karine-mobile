@@ -60,9 +60,8 @@ export class TaskService {
       this.deleteTask(task.key).catch(err => console.log(err));
     } else {
       // save next date
-      console.log(nextDate);
-      task.nextRepeat = nextDate;
-      this.updateTask(task.key, {nextRepeat: nextDate}).catch(err => console.log(err));
+      task.nextRepeat = this.dateToStringPipe.transform(nextDate);
+      this.updateTask(task.key, {nextRepeat: task.nextRepeat}).catch(err => console.log(err));
     }
   }
 
