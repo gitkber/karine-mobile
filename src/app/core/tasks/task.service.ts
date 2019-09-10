@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
-import { HistoryTask, Repeat, Task } from './task';
+import { Category, HistoryTask, Repeat, Task } from './task';
 import { DateToStringPipe } from '../../shared/pipe/date-to-string.pipe';
 
 @Injectable({
@@ -20,7 +20,10 @@ export class TaskService {
   }
 
   getTasksList(): AngularFireList<Task> {
-    return this.tasksRef;
+    return this.db.list(this.dbPathTasks, ref => {
+      return ref.orderByChild('nextRepeat').endAt(this.dateToStringPipe.transform(new Date()));
+    });
+    // return this.tasksRef;
   }
 
   getHistoryTasksList(taskKey: string): AngularFireList<HistoryTask> {
@@ -57,9 +60,10 @@ export class TaskService {
     const nextDate: Date = this.calculateNextDate(new Date(), task.repeat, task.extraRepeat);
     if (nextDate === null) {
       // remove task
-      this.deleteTask(task.key).catch(err => console.log(err));
+      // this.deleteTask(task.key).catch(err => console.log(err));
     } else {
       // save next date
+      // task.nextRepeat = this.dateToStringPipe.transform(new Date());
       task.nextRepeat = this.dateToStringPipe.transform(nextDate);
       this.updateTask(task.key, {nextRepeat: task.nextRepeat}).catch(err => console.log(err));
     }
