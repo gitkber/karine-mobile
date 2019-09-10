@@ -1,7 +1,9 @@
 export class HistoryTask {
   key: string;
-
-  constructor(taskKey: string, description: string, category: Category) {}
+  taskKey: string;
+  description: string;
+  category: Category;
+  hDate: string;
 }
 
 export class Task {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 import { HistoryTask, Repeat, Task } from './task';
-import { filter, map } from 'rxjs/operators';
+import { DateToStringPipe } from '../../shared/pipe/date-to-string.pipe';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class TaskService {
   tasksRef: AngularFireList<Task> = null;
   historyRef: AngularFireList<HistoryTask> = null;
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(private db: AngularFireDatabase, private dateToStringPipe: DateToStringPipe) {
     this.tasksRef = db.list(this.dbPathTasks);
     this.historyRef = db.list(this.dbPathHistory);
   }
@@ -23,33 +23,11 @@ export class TaskService {
     return this.tasksRef;
   }
 
-  // getHistoryTasksList(taskKey: string): AngularFireList<HistoryTask> {
-  //
-  //   // this.taskService.getTasksList().snapshotChanges().pipe(
-  //   //   map(changes =>
-  //   //     changes.map(c =>
-  //   //       ({key: c.payload.key, ...c.payload.val()})
-  //   //     )
-  //   //   )
-  //   // ).subscribe(tasks => {
-  //   //   this.tasks = tasks;
-  //   // });
-  //
-  //   this.historyRef.snapshotChanges().pipe(
-  //       map(changes =>
-  //         changes.map(c =>
-  //           ({key: c.payload.key, ...c.payload.val()})
-  //         )
-  //       ),
-  //     filter(history => history.ta)
-  //   );
-  //
-  //   const databaseRef = this.historyRef.query.ref.child('people');
-  //   const querybaseRef = querybase.ref(databaseRef, ['name', 'age', 'location']);
-  //
-  //   // return this.db.list(this.dbPathHistory, ref => {console.log('')});
-  //   return this.historyRef.query.ref.child('taskKey').startAt('').endAt('');
-  // }
+  getHistoryTasksList(taskKey: string): AngularFireList<HistoryTask> {
+    return this.db.list(this.dbPathHistory, ref => {
+      return ref.orderByChild('taskKey').equalTo(taskKey);
+    });
+  }
 
   createTask(task: Task): void {
     this.tasksRef.push(task);
@@ -73,7 +51,7 @@ export class TaskService {
 
   acceptTask(task: Task) {
     // Add task in the history
-    this.historyRef.push(new HistoryTask(task.key, task.description, task.category));
+    this.createHistoryTask(task);
 
     // Save nextDate
     const nextDate: Date = this.calculateNextDate(new Date(), task.repeat, task.extraRepeat);
@@ -86,6 +64,15 @@ export class TaskService {
       task.nextRepeat = nextDate;
       this.updateTask(task.key, {nextRepeat: nextDate}).catch(err => console.log(err));
     }
+  }
+
+  private createHistoryTask(task: Task) {
+    const ht: HistoryTask = new HistoryTask();
+    ht.taskKey = task.key;
+    ht.description = task.description;
+    ht.category = task.category;
+    ht.hDate = this.dateToStringPipe.transform(new Date());
+    this.historyRef.push(ht);
   }
 
   private calculateNextDate(today: Date, repeat: Repeat, extraRepeat: string): Date {

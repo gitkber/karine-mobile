@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Category, Repeat, Task } from '../task';
+import { Category, HistoryTask, Repeat, Task } from '../task';
 import { TaskService } from '../task.service';
 import { map } from 'rxjs/operators';
 
@@ -13,6 +13,7 @@ import { map } from 'rxjs/operators';
 export class TaskDetailComponent implements OnInit {
 
   task: Task;
+  historyTasks: HistoryTask[];
 
   formGroup: FormGroup;
   isNewTask: boolean;
@@ -32,7 +33,18 @@ export class TaskDetailComponent implements OnInit {
         this.task = task;
         this.initFormGroup();
       });
+
+      this.taskService.getHistoryTasksList(id).snapshotChanges().pipe(
+        map(changes =>
+          changes.map(c =>
+            ({key: c.payload.key, ...c.payload.val()})
+          )
+        )
+      ).subscribe(historyTasks => {
+        this.historyTasks = historyTasks;
+      });
     }
+
   }
 
   private initFormGroup() {
@@ -67,7 +79,12 @@ export class TaskDetailComponent implements OnInit {
       this.taskService.createTask(this.task);
     } else {
       this.taskService
-        .updateTask(this.task.key, {description: this.task.description, category: this.task.category, repeat: this.task.repeat, extraRepeat: this.task.extraRepeat})
+        .updateTask(this.task.key, {
+          description: this.task.description,
+          category: this.task.category,
+          repeat: this.task.repeat,
+          extraRepeat: this.task.extraRepeat
+        })
         .catch(err => console.log(err));
     }
     this.router.navigate(['/']);
