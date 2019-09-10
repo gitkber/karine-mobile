@@ -23,8 +23,14 @@ export class TaskService {
     return this.db.list(this.dbPathTasks, ref => {
       return ref.orderByChild('nextRepeat').endAt(this.dateToStringPipe.transform(new Date()));
     });
-    // return this.tasksRef;
   }
+
+  getTasksInFutureList(): AngularFireList<Task> {
+    return this.db.list(this.dbPathTasks, ref => {
+      return ref.orderByChild('nextRepeat').startAt(this.dateToStringPipe.transform(new Date()));
+    });
+  }
+
 
   getHistoryTasksList(taskKey: string): AngularFireList<HistoryTask> {
     return this.db.list(this.dbPathHistory, ref => {
