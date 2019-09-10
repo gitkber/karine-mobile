@@ -1,11 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TaskListComponent } from './core/tasks/task-list/task-list.component';
 import { TaskDetailComponent } from './core/tasks/task-detail/task-detail.component';
+import { PresentComponent } from './core/view/present/present.component';
+import { PastComponent } from './core/view/past/past.component';
+import { FutureComponent } from './core/view/future/future.component';
+import { ConsultTaskComponent } from './core/view/consult-task/consult-task.component';
+import { EditTaskComponent } from './core/view/edit-task/edit-task.component';
 
 const routes: Routes = [
-  {path: '', component: TaskListComponent},
-  {path: 'taskDetail/:id', component: TaskDetailComponent}
+  {path: '', component: PresentComponent},
+  {path: 'past', component: PastComponent},
+  {path: 'future', component: FutureComponent},
+  {path: 'taskDetail/:id', component: TaskDetailComponent},
+  {path: 'consultTask/:id', component: ConsultTaskComponent},
+  {path: 'editTask/:id', component: EditTaskComponent}
 ];
 
 @NgModule({

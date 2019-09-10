@@ -4,13 +4,15 @@ import { CategoryIconComponent } from './component/category-icon/category-icon.c
 import { CardAccordionComponent } from './component/card-accordion/card-accordion.component';
 import { DateToStringPipe } from './pipe/date-to-string.pipe';
 import { StringToDatePipe } from './pipe/string-to-date.pipe';
+import { ToolbarComponent } from './component/toolbar/toolbar.component';
 
 @NgModule({
-  declarations: [CategoryIconComponent, CardAccordionComponent, DateToStringPipe, StringToDatePipe],
+  declarations: [CategoryIconComponent, CardAccordionComponent, DateToStringPipe, StringToDatePipe, ToolbarComponent],
   exports: [
     CategoryIconComponent,
     CardAccordionComponent,
-    StringToDatePipe
+    StringToDatePipe,
+    ToolbarComponent
   ],
   imports: [
     CommonModule

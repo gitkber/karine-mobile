@@ -1,0 +1,31 @@
+<app-toolbar>
+  <div left>
+    Next days <p *ngIf="tasks">{{tasks.length}}</p>
+  </div>
+  <div right>
+    <a class="circle-link float-right" [routerLink]="['/']">
+      <i class="fas fa-arrow-down"></i>
+    </a>
+  </div>
+</app-toolbar>
+
+<div class="container-fluid">
+  <div class="card card-task shadow-sm mb-2" *ngFor="let task of tasks">
+    <div class="card-body">
+      <div class="row align-items-center" (click)="consultTask(task)">
+        <div class="col-2">
+          <app-category-icon [srcImg]="getPath(task.category)"></app-category-icon>
+        </div>
+        <div class="col-8">
+          <div class="card-title">{{ task.description }}</div>
+        </div>
+        <div class="col-1">
+          <!--          <i class="fa fa-thumbs-up"></i>-->
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="card-subtitle text-muted">{{ task.nextRepeat | stringToDate | date : 'EEEE, d MMMM yyyy' }}</div>
+    </div>
+  </div>
+</div>

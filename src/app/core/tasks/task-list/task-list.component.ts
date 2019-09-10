@@ -17,39 +17,39 @@ export class TaskListComponent implements OnInit {
   constructor(private taskService: TaskService, private router: Router) { }
 
   ngOnInit() {
-    this.taskService.getTasksList().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({key: c.payload.key, ...c.payload.val()})
-        )
-      )
-    ).subscribe(tasks => {
-      this.tasks = tasks;
-    });
+    // this.taskService.getTasksList().snapshotChanges().pipe(
+    //   map(changes =>
+    //     changes.map(c =>
+    //       ({key: c.payload.key, ...c.payload.val()})
+    //     )
+    //   )
+    // ).subscribe(tasks => {
+    //   this.tasks = tasks;
+    // });
   }
 
   tasksInNow() {
-    this.taskService.getTasksList().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({key: c.payload.key, ...c.payload.val()})
-        )
-      )
-    ).subscribe(tasks => {
-      this.tasks = tasks;
-    });
+    // this.taskService.getTasksList().snapshotChanges().pipe(
+    //   map(changes =>
+    //     changes.map(c =>
+    //       ({key: c.payload.key, ...c.payload.val()})
+    //     )
+    //   )
+    // ).subscribe(tasks => {
+    //   this.tasks = tasks;
+    // });
   }
 
   tasksInFuture() {
-    this.taskService.getTasksInFutureList().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({key: c.payload.key, ...c.payload.val()})
-        )
-      )
-    ).subscribe(tasks => {
-      this.tasks = tasks;
-    });
+    // this.taskService.getTasksInFutureList().snapshotChanges().pipe(
+    //   map(changes =>
+    //     changes.map(c =>
+    //       ({key: c.payload.key, ...c.payload.val()})
+    //     )
+    //   )
+    // ).subscribe(tasks => {
+    //   this.tasks = tasks;
+    // });
   }
 
 

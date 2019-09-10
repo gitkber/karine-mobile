@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
-import { Category, HistoryTask, Repeat, Task } from './task';
+import { HistoryTask, Repeat, Task } from './task';
 import { DateToStringPipe } from '../../shared/pipe/date-to-string.pipe';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,26 +13,45 @@ export class TaskService {
   private dbPathTasks = '/tasks';
   private dbPathHistory = '/historyTasks';
 
+  presentTasksRef: AngularFireList<Task> = null;
+  futureTasksRef: AngularFireList<Task> = null;
   tasksRef: AngularFireList<Task> = null;
   historyRef: AngularFireList<HistoryTask> = null;
 
   constructor(private db: AngularFireDatabase, private dateToStringPipe: DateToStringPipe) {
+    const today: Date = new Date();
+    today.setHours(23, 59, 59);
+
+    this.presentTasksRef = this.db.list(this.dbPathTasks, ref => {
+      return ref.orderByChild('nextRepeat').endAt(this.dateToStringPipe.transform(today));
+    });
+    this.futureTasksRef = this.db.list(this.dbPathTasks, ref => {
+      return ref.orderByChild('nextRepeat').startAt(this.dateToStringPipe.transform(today));
+    });
+
     this.tasksRef = db.list(this.dbPathTasks);
     this.historyRef = db.list(this.dbPathHistory);
   }
 
-  getTasksList(): AngularFireList<Task> {
-    return this.db.list(this.dbPathTasks, ref => {
-      return ref.orderByChild('nextRepeat').endAt(this.dateToStringPipe.transform(new Date()));
-    });
+  presentList(): Observable<Task[]> {
+    return this.presentTasksRef.snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({key: c.payload.key, ...c.payload.val()})
+        )
+      )
+    );
   }
 
-  getTasksInFutureList(): AngularFireList<Task> {
-    return this.db.list(this.dbPathTasks, ref => {
-      return ref.orderByChild('nextRepeat').startAt(this.dateToStringPipe.transform(new Date()));
-    });
+  futureList(): Observable<Task[]> {
+    return this.futureTasksRef.snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({key: c.payload.key, ...c.payload.val()})
+        )
+      )
+    );
   }
-
 
   getHistoryTasksList(taskKey: string): AngularFireList<HistoryTask> {
     return this.db.list(this.dbPathHistory, ref => {

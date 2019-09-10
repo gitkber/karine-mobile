@@ -1,26 +1,24 @@
-<div class="toolbar container">
-  <div class="row justify-content-end">
-    <div class="col">
-      <a class="circle-link float-right" [routerLink]="['/taskDetail', '0']">
-        <i class="fas fa-plus"></i>
-      </a>
-      <a class="circle-link float-right" (click)="tasksInNow()">
-        <i class="fas fa-arrow-down"></i>
-      </a>
-      <a class="circle-link float-right" (click)="tasksInFuture()">
-        <i class="fas fa-arrow-right"></i>
-      </a>
-      <!--    <a [routerLink]="['/movie', movie.id]">-->
-<!--      <div class="custom-control custom-switch float-right">-->
-<!--        <input type="checkbox" class="custom-control-input" id="customSwitch1" (change)="changeModeTask()">-->
-<!--        <label class="custom-control-label" for="customSwitch1"><i class="fa fa-edit"></i></label>-->
-<!--      </div>-->
-      <p *ngIf="tasks">{{tasks.length}}</p>
-    </div>
+<app-toolbar>
+  <div left>
+    <p *ngIf="tasks">{{tasks.length}}</p>
   </div>
-</div>
+  <div right>
+        <div class="col">
+          <a class="circle-link float-right" [routerLink]="['/taskDetail', '0']">
+            <i class="fas fa-plus"></i>
+          </a>
+          <a class="circle-link float-right" (click)="tasksInNow()">
+            <i class="fas fa-arrow-down"></i>
+          </a>
+          <a class="circle-link float-right" (click)="tasksInFuture()">
+            <i class="fas fa-arrow-right"></i>
+          </a>
 
-<div>&nbsp;</div>
+        </div>
+
+  </div>
+</app-toolbar>
+
 
 <div class="container-fluid">
 
