@@ -2,36 +2,30 @@
   border-radius: 0%;
 }
 
-.card .card-body {
+.card-task .card-body {
   margin: 0;
   padding: 0.5em;
 }
 
-.card .card-body .card-title {
+.card-task .card-body .card-title {
   margin: 0;
   padding: 0;
   font-weight: bold;
 }
 
-.card .card-subtitle {
+.card-task .card-subtitle {
   margin: 0;
   padding: 0;
   font-size: small;
 }
 
-.card .card-footer {
+.card-task .card-footer {
   background-color: inherit;
   margin: 0;
   padding: 0 0.5em 0 0.5em;
 }
 
-.card .card-header {
-  background-color: inherit;
-  margin: 0;
-  padding: 0 0.5em 0 0.5em;
-}
-
-.card .card-body .arrow-right {
+.card-task .card-body .arrow-right {
   z-index: 0;
 
   position: absolute;

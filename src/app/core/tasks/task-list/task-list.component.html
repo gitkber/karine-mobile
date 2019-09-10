@@ -1,38 +1,46 @@
-<div class="toolbar container">
-  <div class="row justify-content-end">
-    <div class="col">
-      <a class="circle-link float-right" [routerLink]="['/taskDetail', '0']">
-        <i class="fas fa-plus"></i>
-      </a>
-      <!--    <a [routerLink]="['/movie', movie.id]">-->
-      <div class="custom-control custom-switch float-right">
-        <input type="checkbox" class="custom-control-input" id="customSwitch1" (change)="changeModeTask()">
-        <label class="custom-control-label" for="customSwitch1"><i class="fa fa-edit"></i></label>
-      </div>
-    </div>
+<app-toolbar>
+  <div left>
+    <p *ngIf="tasks">{{tasks.length}}</p>
   </div>
-</div>
+  <div right>
+        <div class="col">
+          <a class="circle-link float-right" [routerLink]="['/taskDetail', '0']">
+            <i class="fas fa-plus"></i>
+          </a>
+          <a class="circle-link float-right" (click)="tasksInNow()">
+            <i class="fas fa-arrow-down"></i>
+          </a>
+          <a class="circle-link float-right" (click)="tasksInFuture()">
+            <i class="fas fa-arrow-right"></i>
+          </a>
 
-<div>&nbsp;</div>
+        </div>
+
+  </div>
+</app-toolbar>
+
 
 <div class="container-fluid">
 
   <!-- card with shadow - mb-3 : space between cards  -->
   <div class="card shadow-sm mb-2" *ngFor="let task of tasks">
     <div class="card-body">
-      <div class="row" (click)="editTask(task)">
+      <div class="row">
         <div class="col-2">
           <app-category-icon [srcImg]="getPath(task.category)"></app-category-icon>
         </div>
-        <div class="col-10">
+        <div class="col-8" (click)="editTask(task)">
           <div class="card-title">{{ task.description }}</div>
-          <div class="card-subtitle text-muted">{{task.category}}</div>
+          <div class="card-subtitle text-muted">{{task.repeat}} {{task.extraRepeat}}</div>
+        </div>
+        <div class="col-1">
+          <i class="fa fa-thumbs-up" (click)="acceptTask(task)"></i>
         </div>
       </div>
       <div *ngIf="editTaskList" class="arrow-right" (click)="editTask(task)"></div>
     </div>
     <div class="card-footer">
-      <div class="card-subtitle text-muted">Aujourd'hui</div>
+      <div class="card-subtitle text-muted">{{ task.nextRepeat | stringToDate | date : 'EEEE, d MMMM yyyy' }}</div>
     </div>
   </div>
 

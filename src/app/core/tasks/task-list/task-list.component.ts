@@ -17,20 +17,41 @@ export class TaskListComponent implements OnInit {
   constructor(private taskService: TaskService, private router: Router) { }
 
   ngOnInit() {
-    this.getTasksList();
+    // this.taskService.getTasksList().snapshotChanges().pipe(
+    //   map(changes =>
+    //     changes.map(c =>
+    //       ({key: c.payload.key, ...c.payload.val()})
+    //     )
+    //   )
+    // ).subscribe(tasks => {
+    //   this.tasks = tasks;
+    // });
   }
 
-  getTasksList() {
-    this.taskService.getTasksList().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({key: c.payload.key, ...c.payload.val()})
-        )
-      )
-    ).subscribe(tasks => {
-      this.tasks = tasks;
-    });
+  tasksInNow() {
+    // this.taskService.getTasksList().snapshotChanges().pipe(
+    //   map(changes =>
+    //     changes.map(c =>
+    //       ({key: c.payload.key, ...c.payload.val()})
+    //     )
+    //   )
+    // ).subscribe(tasks => {
+    //   this.tasks = tasks;
+    // });
   }
+
+  tasksInFuture() {
+    // this.taskService.getTasksInFutureList().snapshotChanges().pipe(
+    //   map(changes =>
+    //     changes.map(c =>
+    //       ({key: c.payload.key, ...c.payload.val()})
+    //     )
+    //   )
+    // ).subscribe(tasks => {
+    //   this.tasks = tasks;
+    // });
+  }
+
 
   editTask(task: Task) {
     this.router.navigate(['/taskDetail', task.key]);
@@ -56,4 +77,10 @@ export class TaskListComponent implements OnInit {
   changeModeTask() {
     this.editTaskList = !this.editTaskList;
   }
+
+  acceptTask(task: Task) {
+    console.log('accept the task ' + task.key);
+    this.taskService.acceptTask(task);
+  }
+
 }
