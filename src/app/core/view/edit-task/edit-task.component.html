@@ -8,3 +8,70 @@
     </a>
   </div>
 </app-toolbar>
+
+<div class="container-fluid">
+
+  <div *ngIf="formGroup">
+    <div id="accordion">
+      <form [formGroup]="formGroup">
+        <!-- description -->
+        <app-card-accordion cardAccordionId="collapseOne" nextCardAccordionId="collapseTwo" [open]="isNewTask"
+                            [stepAction]="isNewTask"
+                            (saveCard)="onSubmit()">
+          <div header>
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                    aria-controls="collapseOne">
+              <span *ngIf="isNewTask">Description</span>{{ task.description }}
+            </button>
+          </div>
+          <div body>
+            <label for="description">Description</label>
+            <input type="text" class="form-control" id="description" formControlName="description" required>
+          </div>
+        </app-card-accordion>
+        <!-- category -->
+        <app-card-accordion cardAccordionId="collapseTwo" nextCardAccordionId="collapseThree" [stepAction]="isNewTask"
+                            (saveCard)="onSubmit()" #collapseTwo>
+          <div header>
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="false" aria-controls="collapseTwo">
+              <span *ngIf="isNewTask">Category</span>{{ task.category }}
+            </button>
+          </div>
+          <div body>
+            <div *ngFor="let item of allCategory()">
+              <label>
+                <input type="radio" value="{{ item }}" formControlName="category">
+                <span>{{ item }}</span>
+              </label>
+            </div>
+          </div>
+        </app-card-accordion>
+        <!-- Repeat -->
+        <app-card-accordion cardAccordionId="collapseThree" nextCard="true"
+                            (saveCard)="onSubmit()" #collapseThree>
+          <div header>
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree"
+                    aria-expanded="false" aria-controls="collapseThree">
+              <span *ngIf="!task.repeat">Repeat</span>{{ task.repeat }} {{ task.extraRepeat }}
+            </button>
+          </div>
+          <div body>
+            <div *ngFor="let item of allRepeat()">
+              <label>
+                <input type="radio" value="{{ item }}" formControlName="repeat">
+                <span>{{ item }}</span>
+              </label>
+            </div>
+            <div class="formGroup">
+              <label for="extraRepeat">Extra</label>
+              <input type="text" class="form-control" id="extraRepeat" formControlName="extraRepeat" required>
+            </div>
+          </div>
+        </app-card-accordion>
+
+      </form>
+    </div>
+  </div>
+
+</div>

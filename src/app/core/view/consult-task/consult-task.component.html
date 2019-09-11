@@ -6,6 +6,9 @@
     <a class="circle-link float-right" [routerLink]="['/']">
       <i class="fas fa-times"></i>
     </a>
+    <a *ngIf="task" class="circle-link float-right"  [routerLink]="['/editTask', task.key]">
+      <i class="fas fa-pencil-alt"></i>
+    </a>
   </div>
 </app-toolbar>
 
@@ -18,7 +21,7 @@
         </div>
         <div class="col-8">
           <div class="card-title">{{ task.description }}</div>
-          <div class="card-subtitle text-muted">{{task.repeat}} {{task.extraRepeat}}</div>
+          <div class="card-subtitle text-muted">{{task.repeat}} {{task.extraRepeat}} </div>
         </div>
         <div class="col-1">
           <!--        <i class="fa fa-thumbs-up"></i>-->

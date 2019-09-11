@@ -40,4 +40,8 @@ export class ConsultTaskComponent implements OnInit {
   getPath(category: Category) {
     return getPathOfCategory(category);
   }
+
+  editTask(eeee) {
+    console.log(this.task.key + '        - ' + eeee);
+  }
 }
