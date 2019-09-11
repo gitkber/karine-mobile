@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TaskService } from '../../core/tasks/task.service';
-import { Category, getPathOfCategory, Task } from '../../core/tasks/task';
+import { Category, getPathOfCategory, Task } from '../../core/model';
+import { TaskService } from '../../core/service/task.service';
 
 @Component({
   selector: 'app-future',

@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map } from 'rxjs/operators';
-import { TaskService } from '../../core/tasks/task.service';
 import { DateToStringPipe } from '../../shared/pipe/date-to-string.pipe';
-import { Category, Repeat, Task } from '../../core/tasks/task';
+import { Category, Repeat, Task } from '../../core/model';
+import { TaskService } from '../../core/service/task.service';
 
 @Component({
   selector: 'app-edit-task',
@@ -33,9 +32,7 @@ export class EditTaskComponent implements OnInit {
       this.task = new Task();
       this.initFormGroup();
     } else {
-      this.taskService.getTask(id).snapshotChanges().pipe(
-        map(c => ({key: c.payload.key, ...c.payload.val()}))
-      ).subscribe(task => {
+      this.taskService.getTask(id).subscribe(task => {
         this.task = task;
         this.initFormGroup();
       });

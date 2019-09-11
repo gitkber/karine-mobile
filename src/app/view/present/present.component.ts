@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TaskService } from '../../core/tasks/task.service';
-import { Category, getPathOfCategory, Task } from '../../core/tasks/task';
+import { Category, getPathOfCategory, Task } from '../../core/model';
+import { FacadeService } from '../../core/service/facade.service';
 
 @Component({
   selector: 'app-present',
@@ -12,10 +12,10 @@ export class PresentComponent implements OnInit {
 
   tasks: Task[];
 
-  constructor(private taskService: TaskService, private router: Router) { }
+  constructor(private facadeService: FacadeService, private router: Router) { }
 
   ngOnInit() {
-    this.taskService.presentList().subscribe(tasks => {
+    this.facadeService.taskService.presentList().subscribe(tasks => {
       this.tasks = tasks;
     });
   }
@@ -25,7 +25,7 @@ export class PresentComponent implements OnInit {
   }
 
   acceptTask(task: Task) {
-    this.taskService.acceptTask(task);
+    this.facadeService.acceptTask(task);
   }
 
   consultTask(task: Task) {
