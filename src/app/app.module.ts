@@ -7,6 +7,7 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
+import { ViewModule } from './view/view.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { CoreModule } from './core/core.module';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
+    ViewModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule
   ],

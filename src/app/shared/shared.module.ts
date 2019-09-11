@@ -2,17 +2,24 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CategoryIconComponent } from './component/category-icon/category-icon.component';
 import { CardAccordionComponent } from './component/card-accordion/card-accordion.component';
+import { ToolbarComponent } from './component/toolbar/toolbar.component';
 import { DateToStringPipe } from './pipe/date-to-string.pipe';
 import { StringToDatePipe } from './pipe/string-to-date.pipe';
-import { ToolbarComponent } from './component/toolbar/toolbar.component';
 
 @NgModule({
-  declarations: [CategoryIconComponent, CardAccordionComponent, DateToStringPipe, StringToDatePipe, ToolbarComponent],
+  declarations: [
+    CategoryIconComponent,
+    CardAccordionComponent,
+    ToolbarComponent,
+    DateToStringPipe,
+    StringToDatePipe
+  ],
   exports: [
     CategoryIconComponent,
     CardAccordionComponent,
+    ToolbarComponent,
+    DateToStringPipe,
     StringToDatePipe,
-    ToolbarComponent
   ],
   imports: [
     CommonModule

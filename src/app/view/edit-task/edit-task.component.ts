@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Category, Repeat, Task } from '../../tasks/task';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TaskService } from '../../tasks/task.service';
-import { DateToStringPipe } from '../../../shared/pipe/date-to-string.pipe';
 import { map } from 'rxjs/operators';
+import { TaskService } from '../../core/tasks/task.service';
+import { DateToStringPipe } from '../../shared/pipe/date-to-string.pipe';
+import { Category, Repeat, Task } from '../../core/tasks/task';
 
 @Component({
   selector: 'app-edit-task',

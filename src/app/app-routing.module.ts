@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PresentComponent } from './core/view/present/present.component';
-import { PastComponent } from './core/view/past/past.component';
-import { FutureComponent } from './core/view/future/future.component';
-import { ConsultTaskComponent } from './core/view/consult-task/consult-task.component';
-import { EditTaskComponent } from './core/view/edit-task/edit-task.component';
+import { PresentComponent } from './view/present/present.component';
+import { PastComponent } from './view/past/past.component';
+import { FutureComponent } from './view/future/future.component';
+import { ConsultTaskComponent } from './view/consult-task/consult-task.component';
+import { EditTaskComponent } from './view/edit-task/edit-task.component';
 
 const routes: Routes = [
   {path: '', component: PresentComponent},

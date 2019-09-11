@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TaskService } from '../../tasks/task.service';
-import { Category, getPathOfCategory, HistoryTask, Task } from '../../tasks/task';
+import { map } from 'rxjs/operators';
+import { Category, getPathOfCategory, HistoryTask, Task } from '../../core/tasks/task';
+import { TaskService } from '../../core/tasks/task.service';
 
 @Component({
   selector: 'app-consult-task',
