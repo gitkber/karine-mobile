@@ -16,17 +16,15 @@ export class FacadeService {
   ) { }
 
   acceptTask(task: Task) {
-    // Add task in the history
-    this.historyTaskService.createHistoryTask(task);
-
-    // Save nextDate
     const nextDate: Date = this.calculateNextDate(new Date(), task.repeat, task.extraRepeat);
+
+    this.historyTaskService.createHistoryTask(task, nextDate == null);
+
     if (nextDate === null) {
       // remove task
-      // this.deleteTask(task.key).catch(err => console.log(err));
+      this.taskService.deleteTask(task.key).catch(err => console.log(err));
     } else {
       // save next date
-      // task.nextRepeat = this.dateToStringPipe.transform(new Date());
       task.nextRepeat = this.dateToStringPipe.transform(nextDate);
       this.taskService.updateTask(task.key, {nextRepeat: task.nextRepeat}).catch(err => console.log(err));
     }

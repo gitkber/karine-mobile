@@ -4,6 +4,7 @@ export class HistoryTask {
   description: string;
   category: Category;
   hDate: string;
+  done: boolean;
 }
 
 export class Task {

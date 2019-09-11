@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
-import { HistoryTask, Task } from '../model';
+import { HistoryTask, Repeat, Task } from '../model';
 import { DateToStringPipe } from '../../shared/pipe/date-to-string.pipe';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -18,22 +18,32 @@ export class HistoryTaskService {
     this.historyRef = db.list(this.dbPathHistory);
   }
 
-  getHistoryTasksList(taskKey: string): Observable<HistoryTask[]> {
-    const ref: AngularFireList<HistoryTask> = this.db.list(this.dbPathHistory, query => {
+  historyTasksListByTask(taskKey: string): Observable<HistoryTask[]> {
+    return this.snapshotChangesMap(this.db.list(this.dbPathHistory, query => {
       return query.orderByChild('taskKey').equalTo(taskKey);
-    });
-    return ref.snapshotChanges().pipe(
+    }));
+  }
+
+  doneHistoryTasksList(): Observable<HistoryTask[]> {
+    return this.snapshotChangesMap(this.db.list(this.dbPathHistory, query => {
+      return query.orderByChild('done').equalTo(true);
+    }));
+  }
+
+  private snapshotChangesMap(angularFireList: AngularFireList<HistoryTask>): Observable<HistoryTask[]> {
+    return angularFireList.snapshotChanges().pipe(
       map(changes =>
         changes.map(c => ({key: c.payload.key, ...c.payload.val()}))
       )
     );
   }
 
-  createHistoryTask(task: Task) {
+  createHistoryTask(task: Task, done: boolean) {
     const ht: HistoryTask = new HistoryTask();
     ht.taskKey = task.key;
     ht.description = task.description;
     ht.category = task.category;
+    ht.done = done;
     ht.hDate = this.dateToStringPipe.transform(new Date());
     this.historyRef.push(ht);
   }

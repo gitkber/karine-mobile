@@ -25,7 +25,7 @@ export class ConsultTaskComponent implements OnInit {
       this.task = task;
     });
 
-    this.facadeService.historyTaskService.getHistoryTasksList(id).subscribe(historyTasks => {
+    this.facadeService.historyTaskService.historyTasksListByTask(id).subscribe(historyTasks => {
       this.historyTasks = historyTasks;
     });
   }

@@ -71,14 +71,14 @@ export class EditTaskComponent implements OnInit {
     if (this.isNewTask) {
       this.taskService.createTask(this.task);
     } else {
-      // this.taskService
-      //   .updateTask(this.task.key, {
-      //     description: this.task.description,
-      //     category: this.task.category,
-      //     repeat: this.task.repeat,
-      //     extraRepeat: this.task.extraRepeat
-      //   })
-      //   .catch(err => console.log(err));
+      this.taskService
+        .updateTask(this.task.key, {
+          description: this.task.description,
+          category: this.task.category,
+          repeat: this.task.repeat,
+          extraRepeat: this.task.extraRepeat
+        })
+        .catch(err => console.log(err));
     }
     this.router.navigate(['/']);
   }

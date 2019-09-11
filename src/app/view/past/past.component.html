@@ -8,3 +8,24 @@
     </a>
   </div>
 </app-toolbar>
+
+<div class="container-fluid">
+  <div class="card shadow-sm mb-2" *ngFor="let historyTask of historyTasks">
+    <div class="card-body">
+      <div class="row align-items-center">
+        <div class="col-2">
+          <app-category-icon [srcImg]="getPath(historyTask.category)"></app-category-icon>
+        </div>
+        <div class="col-8">
+          <div class="card-title">{{ historyTask.description }}</div>
+        </div>
+        <div class="col-1">
+          <!--          <i class="fa fa-thumbs-up"></i>-->
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="card-subtitle text-muted">{{ historyTask.hDate | stringToDate | date : 'EEEE, d MMMM yyyy' }}</div>
+    </div>
+  </div>
+</div>
