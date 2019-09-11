@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TaskListComponent } from './tasks/task-list/task-list.component';
 import { SharedModule } from '../shared/shared.module';
-import { TaskDetailComponent } from './tasks/task-detail/task-detail.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PresentComponent } from './view/present/present.component';
@@ -13,8 +11,6 @@ import { EditTaskComponent } from './view/edit-task/edit-task.component';
 
 @NgModule({
   declarations: [
-    TaskListComponent,
-    TaskDetailComponent,
     PresentComponent,
     FutureComponent,
     PastComponent,
@@ -22,7 +18,6 @@ import { EditTaskComponent } from './view/edit-task/edit-task.component';
     EditTaskComponent
   ],
   exports: [
-    TaskListComponent,
     PresentComponent,
     FutureComponent,
     PastComponent,

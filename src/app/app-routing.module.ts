@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TaskDetailComponent } from './core/tasks/task-detail/task-detail.component';
 import { PresentComponent } from './core/view/present/present.component';
 import { PastComponent } from './core/view/past/past.component';
 import { FutureComponent } from './core/view/future/future.component';
@@ -11,7 +10,6 @@ const routes: Routes = [
   {path: '', component: PresentComponent},
   {path: 'past', component: PastComponent},
   {path: 'future', component: FutureComponent},
-  {path: 'taskDetail/:id', component: TaskDetailComponent},
   {path: 'consultTask/:id', component: ConsultTaskComponent},
   {path: 'editTask/:id', component: EditTaskComponent}
 ];
