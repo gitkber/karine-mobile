@@ -3,14 +3,8 @@
     Today <p *ngIf="tasks">{{tasks.length}}</p>
   </div>
   <div right>
-    <a class="circle-link float-right" [routerLink]="['/future']">
-      <i class="fas fa-arrow-right"></i>
-    </a>
     <a class="circle-link float-right" [routerLink]="['/editTask', '0']">
       <i class="fas fa-plus"></i>
-    </a>
-    <a class="circle-link float-right" [routerLink]="['/past']">
-      <i class="fas fa-arrow-left"></i>
     </a>
   </div>
 </app-toolbar>

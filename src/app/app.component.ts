@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'karine-mobile';
+
+  @ViewChild('mySidenav', {static: true}) mySidenav: ElementRef;
+
+  constructor(private renderer: Renderer2) { }
+
+  openNav() {
+    this.renderer.setStyle(this.mySidenav.nativeElement, 'width', '250px');
+  }
+
+  closeNav() {
+    this.renderer.setStyle(this.mySidenav.nativeElement, 'width', '0');
+  }
 }

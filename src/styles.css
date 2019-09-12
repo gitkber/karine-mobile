@@ -12,6 +12,8 @@ body {
 
 header {
   background-color: var(--color-one);
+  display: flex;
+  justify-content: space-between;
 }
 .toolbar {
   background-color: var(--color-one);

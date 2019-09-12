@@ -1,5 +1,21 @@
+<div id="mySidenav" class="sidenav" #mySidenav>
+  <a class="close" (click)="closeNav()">&times;</a>
+  <a>About</a>
+  <input type="hidden" #selection>
+  <a [routerLink]="['/past']" (click)="closeNav();selection.value = 'past'">Tâches terminées</a>
+  <a [routerLink]="['/future']" (click)="closeNav();selection.value = 'future'">Tâches à venir</a>
+</div>
+
 <header>
-  &nbsp;
+  <span style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776;</span>
+  <!--  &nbsp;-->
+
+  <!-- Terminal -->
+  <div [ngSwitch]="selection.value">
+    <pre *ngSwitchDefault>Home</pre>
+    <pre *ngSwitchCase="'future'">Tâches à venir</pre>
+    <pre *ngSwitchCase="'past'">Tâches terminées</pre>
+  </div>
 </header>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
