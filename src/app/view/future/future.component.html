@@ -1,6 +1,6 @@
 <app-toolbar>
   <div left>
-    Next days <p *ngIf="tasks">{{tasks.length}}</p>
+    <pre>Tâches à venir</pre> <p *ngIf="tasks">{{tasks.length}}</p>
   </div>
   <div right>
     <a class="circle-link float-right" [routerLink]="['/']">
