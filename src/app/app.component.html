@@ -2,7 +2,7 @@
   <a class="close" (click)="closeNav()">&times;</a>
   <a>About</a>
   <a [routerLink]="['/past']" (click)="closeNav()">Tâches terminées</a>
-<!--  <a [routerLink]="['/future']" (click)="closeNav()">Tâches à venir</a>-->
+  <!--  <a [routerLink]="['/future']" (click)="closeNav()">Tâches à venir</a>-->
 </div>
 
 <header>
@@ -11,7 +11,9 @@
 </header>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<router-outlet></router-outlet>
+<div [@routeAnimations]="prepareRoute(outlet)">
+  <router-outlet #outlet="outlet"></router-outlet>
+</div>
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 <div>&nbsp;</div>

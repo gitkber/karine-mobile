@@ -7,11 +7,11 @@ import { ConsultTaskComponent } from './consult-task/consult-task.component';
 import { EditTaskComponent } from './edit-task/edit-task.component';
 
 const routes: Routes = [
-  {path: 'present', component: PresentComponent},
-  {path: 'past', component: PastComponent},
+  {path: 'present', component: PresentComponent, data: {animation: 'Home'}},
+  {path: 'past', component: PastComponent, data: {animation: 'Past'}},
   {path: 'future', component: FutureComponent},
-  {path: 'consultTask/:id', component: ConsultTaskComponent},
-  {path: 'editTask/:id', component: EditTaskComponent}
+  {path: 'consultTask/:id', component: ConsultTaskComponent, data: {animation: 'Consult'}},
+  {path: 'editTask/:id', component: EditTaskComponent, data: {animation: 'Edit'}}
 ];
 
 @NgModule({
