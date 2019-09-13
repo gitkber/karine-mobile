@@ -1,12 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { animate, query, stagger, style, transition, trigger } from '@angular/animations';
 import { Category, getPathOfCategory, Task } from '../../core/model';
 import { FacadeService } from '../../core/service/facade.service';
 
 @Component({
   selector: 'app-present',
   templateUrl: './present.component.html',
-  styleUrls: ['./present.component.css']
+  styleUrls: ['./present.component.css'],
+  animations: [
+    trigger('listStagger', [
+      transition('* <=> *', [
+        query(
+          ':enter',
+          [
+            style({opacity: 0, transform: 'translateY(-15px)'}),
+            stagger(
+              '50ms',
+              animate(
+                '550ms ease-out',
+                style({opacity: 1, transform: 'translateY(0px)'})
+              )
+            )
+          ],
+          {optional: true}
+        ),
+        query(':leave', animate('50ms', style({opacity: 0})), {
+          optional: true
+        })
+      ])
+    ])
+  ]
 })
 export class PresentComponent implements OnInit {
 

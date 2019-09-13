@@ -19,22 +19,24 @@
 </app-toolbar>
 
 <div class="container-fluid">
-  <div class="card shadow-sm mb-2" *ngFor="let task of tasks">
-    <div class="card-body">
-      <div class="row align-items-center">
-        <div class="col-2" (click)="consultTask(task)">
-          <app-category-icon [srcImg]="getPath(task.category)"></app-category-icon>
-        </div>
-        <div class="col-8" (click)="consultTask(task)">
-          <div class="card-title">{{ task.description }}</div>
-        </div>
-        <div class="col-1" (click)="acceptTask(task)">
-          <i class="fa fa-thumbs-up"></i>
+  <div *ngIf="tasks" [@listStagger]='tasks.length'>
+    <div class="card shadow-sm mb-2" *ngFor="let task of tasks">
+      <div class="card-body">
+        <div class="row align-items-center">
+          <div class="col-2" (click)="consultTask(task)">
+            <app-category-icon [srcImg]="getPath(task.category)"></app-category-icon>
+          </div>
+          <div class="col-8" (click)="consultTask(task)">
+            <div class="card-title">{{ task.description }}</div>
+          </div>
+          <div class="col-1" (click)="acceptTask(task)">
+            <i class="fa fa-thumbs-up"></i>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="card-footer">
-      <div class="card-subtitle text-muted">{{ task.nextRepeat | stringToDate | date : 'EEEE, d MMMM yyyy' }}</div>
+      <div class="card-footer">
+        <div class="card-subtitle text-muted">{{ task.nextRepeat | stringToDate | date : 'EEEE, d MMMM yyyy' }}</div>
+      </div>
     </div>
   </div>
 </div>
