@@ -84,4 +84,7 @@ export class EditTaskComponent implements OnInit {
     this.location.back();
   }
 
+  backView() {
+    this.location.back();
+  }
 }

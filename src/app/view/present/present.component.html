@@ -1,14 +1,14 @@
 <app-toolbar>
-  <div card-left class="selected">
+  <div card-left class="card" [class.selected]="todaySelected" (click)="goPresent()">
     <div style="padding: 0 0.2em 0 0.2em;">
       <div>Today - {{ today | date: 'd MMM' }}</div>
-      <div *ngIf="tasks">total : {{tasks.length}}</div>
+      <div *ngIf="todayTasksSize">Total : {{todayTasksSize}}</div>
     </div>
   </div>
-  <div card-right (click)="goFuture()">
+  <div card-right class="card" [class.selected]="tomorrowSelected" (click)="goFuture()">
     <div style="padding: 0 0.2em 0 0.2em;">
       <div>Tomorrow</div>
-      <div>total : 4</div>
+      <div *ngIf="tomorrowTasksSize">Total : {{tomorrowTasksSize}}</div>
     </div>
   </div>
   <div action>

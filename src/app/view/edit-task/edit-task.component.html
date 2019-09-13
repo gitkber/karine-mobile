@@ -1,12 +1,12 @@
 <app-toolbar>
-  <div card-left class="selected">
+  <div card-left class="card selected">
     <div style="padding: 0 0.2em 0 0.2em;">
       <div>Edition</div>
     </div>
   </div>
   <div card-right>
     <div style="padding: 0 0.2em 0 0.2em;">
-      <a class="circle-link float-right" [routerLink]="['/']">
+      <a class="circle-link float-right" (click)="backView()">
         <i class="fas fa-times"></i>
       </a>
     </div>
