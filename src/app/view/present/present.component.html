@@ -1,11 +1,16 @@
 <app-toolbar>
   <div left>
-    Today <p *ngIf="tasks">{{tasks.length}}</p>
+    <div style="display: inline">
+      Today
+      <div *ngIf="tasks">{{tasks.length}}</div>
+    </div>
   </div>
   <div right>
-    <a class="circle-link float-right" [routerLink]="['/editTask', '0']">
-      <i class="fas fa-plus"></i>
-    </a>
+    <div>
+      <a class="circle-link" [routerLink]="['/editTask', '0']">
+        <i class="fas fa-plus"></i>
+      </a>
+    </div>
   </div>
 </app-toolbar>
 

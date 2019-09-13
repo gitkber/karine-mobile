@@ -1,6 +1,9 @@
 <app-toolbar>
   <div left>
-    <pre>Tâches à venir</pre> <p *ngIf="tasks">{{tasks.length}}</p>
+    <div style="display: inline">
+      Tâches à venir
+      <div *ngIf="tasks">{{tasks.length}}</div>
+    </div>
   </div>
   <div right>
     <a class="circle-link float-right" [routerLink]="['/']">

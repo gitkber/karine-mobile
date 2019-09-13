@@ -1,6 +1,9 @@
 <app-toolbar>
   <div left>
-    <pre>Tâches terminées</pre>
+    <div style="display: inline">
+      Tâches terminées
+      <div *ngIf="historyTasks">{{historyTasks.length}}</div>
+    </div>
   </div>
   <div right>
     <a class="circle-link float-right" [routerLink]="['/']">
