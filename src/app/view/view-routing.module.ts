@@ -7,7 +7,7 @@ import { ConsultTaskComponent } from './consult-task/consult-task.component';
 import { EditTaskComponent } from './edit-task/edit-task.component';
 
 const routes: Routes = [
-  {path: 'present', component: PresentComponent, data: {animation: 'Home'}},
+  {path: 'present', component: PresentComponent, data: {animation: 'Present'}},
   {path: 'past', component: PastComponent, data: {animation: 'Past'}},
   {path: 'future', component: FutureComponent},
   {path: 'consultTask/:id', component: ConsultTaskComponent, data: {animation: 'Consult'}},
