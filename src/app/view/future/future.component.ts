@@ -10,6 +10,7 @@ import { TaskService } from '../../core/service/task.service';
 })
 export class FutureComponent implements OnInit {
 
+  today: Date = new Date();
   tasks: Task[];
 
   constructor(private taskService: TaskService, private router: Router) { }

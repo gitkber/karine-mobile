@@ -1,11 +1,15 @@
 <app-toolbar>
-  <div left>
-    <pre>Edition</pre>
+  <div card-left class="selected">
+    <div style="padding: 0 0.2em 0 0.2em;">
+      <div>Edition</div>
+    </div>
   </div>
-  <div right>
-    <a class="circle-link float-right" [routerLink]="['/']">
-      <i class="fas fa-times"></i>
-    </a>
+  <div card-right>
+    <div style="padding: 0 0.2em 0 0.2em;">
+      <a class="circle-link float-right" [routerLink]="['/']">
+        <i class="fas fa-times"></i>
+      </a>
+    </div>
   </div>
 </app-toolbar>
 

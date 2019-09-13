@@ -1,11 +1,17 @@
 <app-toolbar>
-  <div left>
-    <div style="display: inline">
-      Tâches à venir
-      <div *ngIf="tasks">{{tasks.length}}</div>
+  <div card-left>
+    <div style="padding: 0 0.2em 0 0.2em;">
+      <div>Today - {{ today | date: 'd MMM' }}</div>
+      <div *ngIf="tasks">total : {{tasks.length}}</div>
     </div>
   </div>
-  <div right>
+  <div card-right class="selected">
+    <div style="padding: 0 0.2em 0 0.2em;">
+      <div>Tomorrow</div>
+      <div>total : 4</div>
+    </div>
+  </div>
+  <div action>
     <a class="circle-link float-right" [routerLink]="['/']">
       <i class="fas fa-times"></i>
     </a>

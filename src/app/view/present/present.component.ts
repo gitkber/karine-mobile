@@ -32,4 +32,8 @@ export class PresentComponent implements OnInit {
   consultTask(task: Task) {
     this.router.navigate(['/consultTask', task.key]);
   }
+
+  goFuture() {
+    this.router.navigate(['/future']);
+  }
 }

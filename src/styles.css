@@ -16,13 +16,49 @@ header {
   justify-content: space-between;
   padding: 0.2em 0.5em 0 0.5em;
 }
+
 .toolbar {
-  border-top: 1px solid #6F6887;
+  /*border-top: 1px solid #6F6887;*/
   background-color: var(--color-one);
   display: flex;
   justify-content: space-between;
   padding: 0 0.5em 0 0.5em;
 }
+
+.toolbar-info {
+  /*border-top: 1px solid #6F6887;*/
+  /*z-index: 100;*/
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.5em 0 0.5em;
+  margin-bottom: 0.4em;
+  /*background-color: red;*/
+}
+
+.toolbar-info span {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1.5em;
+  background-color: var(--color-one);
+  z-index: -1;
+}
+
+.toolbar-info .card {
+  width: 50%;
+  margin: 0 0.5em 0 0.5em;
+  /*padding: 0 0.2em 0 0.2em;*/
+  /*background-color: red;*/
+  /*border-radius: 0 9px 9px 0;*/
+}
+
+.toolbar-info .selected {
+
+  border: 1px solid black;
+}
+
+
 footer {
   background-color: var(--color-one);
 }
@@ -33,7 +69,6 @@ footer {
   }
 
   /* passer body (et tous les éléments de largeur fixe) en largeur automatique */
-
   body {
     width: auto;
     margin: 0;
@@ -42,7 +77,6 @@ footer {
   }
 
   /* fixer une largeur maximale de 100% aux éléments potentiellement problématiques */
-
   img,
   table,
   td,
@@ -59,13 +93,11 @@ footer {
   }
 
   /* conserver le ratio des images */
-
   img {
     height: auto;
   }
 
   /* gestion des mots longs */
-
   textarea,
   table,
   td,
@@ -86,7 +118,6 @@ footer {
   }
 
   /* Passer à une seule colonne (à appliquer aux éléments multi-colonnes) */
-
   .element1,
   .element2 {
     float: none;
@@ -94,13 +125,11 @@ footer {
   }
 
   /* masquer les éléments superflus */
-
   .hide_mobile {
     display: none !important;
   }
 
   /* Un message personnalisé */
-
   body:before {
     content: "Version mobile du site";
     display: block;
@@ -110,7 +139,7 @@ footer {
   }
 }
 
-@media (max-device-width:768px) and (orientation: landscape) {
+@media (max-device-width: 768px) and (orientation: landscape) {
   html {
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;

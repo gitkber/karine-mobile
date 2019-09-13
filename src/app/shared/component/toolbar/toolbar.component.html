@@ -1,6 +1,10 @@
-<div class="toolbar">
-    <ng-content select="[left]"></ng-content>
-    <ng-content select="[right]"></ng-content>
+<div class="toolbar-info">
+  <span></span>
+  <div class="card">
+    <ng-content select="[card-left]"></ng-content>
+  </div>
+  <div class="card">
+    <ng-content select="[card-right]"></ng-content>
+  </div>
+  <ng-content select="[action]"></ng-content>
 </div>
-
-<div>&nbsp;</div>
