@@ -46,7 +46,7 @@ export function getPathOfCategory(category: Category): string {
     case Category.OBJECTIVE:
       return '../../../../assets/img/category/objective_target_32.png';
     case Category.OTHER:
-      return '../../../../assets/img/category/other_catalog_64.png';
+      return '../../../../assets/img/category/other_catalog_32.png';
   }
   return '';
 }

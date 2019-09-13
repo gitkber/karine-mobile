@@ -1,12 +1,10 @@
 <app-toolbar>
-  <div card-left>
-    <div style="display: inline">
+  <div card-left class="card selected">
       <div style="padding: 0 0.2em 0 0.2em;">
-        Tâches terminées
-        <div *ngIf="historyTasks">{{historyTasks.length}}</div>
+        <div>Tâches terminées</div>
+        <div *ngIf="historyTasks">Total : {{historyTasks.length}}</div>
       </div>
     </div>
-  </div>
   <div action>
     <a class="circle-link float-right" [routerLink]="['/']">
       <i class="fas fa-times"></i>
