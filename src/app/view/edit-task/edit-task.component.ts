@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { DateToStringPipe } from '../../shared/pipe/date-to-string.pipe';
 import { Category, Repeat, Task } from '../../core/model';
 import { TaskService } from '../../core/service/task.service';
@@ -19,7 +20,7 @@ export class EditTaskComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
+    private location: Location,
     private formBuilder: FormBuilder,
     private taskService: TaskService,
     private dateToStringPipe: DateToStringPipe
@@ -80,7 +81,7 @@ export class EditTaskComponent implements OnInit {
         })
         .catch(err => console.log(err));
     }
-    this.router.navigate(['/']);
+    this.location.back();
   }
 
 }

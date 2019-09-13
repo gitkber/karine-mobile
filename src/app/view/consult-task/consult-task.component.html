@@ -3,7 +3,7 @@
     <pre>Consultation</pre>
   </div>
   <div right>
-    <a class="circle-link float-right" [routerLink]="['/']">
+    <a class="circle-link float-right" (click)="backView()">
       <i class="fas fa-times"></i>
     </a>
     <a *ngIf="task" class="circle-link float-right"  [routerLink]="['/editTask', task.key]">

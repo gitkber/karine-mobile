@@ -10,6 +10,7 @@ import { FacadeService } from '../../core/service/facade.service';
 })
 export class PresentComponent implements OnInit {
 
+  today: Date = new Date();
   tasks: Task[];
 
   constructor(private facadeService: FacadeService, private router: Router) { }

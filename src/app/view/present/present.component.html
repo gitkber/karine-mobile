@@ -1,7 +1,7 @@
 <app-toolbar>
   <div left>
     <div style="display: inline">
-      Today
+      Today - {{ today | date: 'd MMMM yyyy' }}
       <div *ngIf="tasks">{{tasks.length}}</div>
     </div>
   </div>
@@ -28,6 +28,9 @@
           <i class="fa fa-thumbs-up"></i>
         </div>
       </div>
+    </div>
+    <div class="card-footer">
+      <div class="card-subtitle text-muted">{{ task.nextRepeat | stringToDate | date : 'EEEE, d MMMM yyyy' }}</div>
     </div>
   </div>
 </div>

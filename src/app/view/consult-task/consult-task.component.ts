@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 import { Category, getPathOfCategory, HistoryTask, Task } from '../../core/model';
 import { FacadeService } from '../../core/service/facade.service';
 
@@ -15,7 +16,7 @@ export class ConsultTaskComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
+    private location: Location,
     private facadeService: FacadeService
   ) { }
 
@@ -34,4 +35,7 @@ export class ConsultTaskComponent implements OnInit {
     return getPathOfCategory(category);
   }
 
+  backView() {
+    this.location.back();
+  }
 }
