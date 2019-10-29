@@ -14,6 +14,7 @@ export class Task {
   repeat: Repeat;
   extraRepeat: string;
   nextRepeat: string;
+  amount: number;
 }
 
 export enum Category {

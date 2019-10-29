@@ -5,13 +5,15 @@ import { PastComponent } from './past/past.component';
 import { FutureComponent } from './future/future.component';
 import { ConsultTaskComponent } from './consult-task/consult-task.component';
 import { EditTaskComponent } from './edit-task/edit-task.component';
+import { BudgetComponent } from './budget/budget.component';
 
 const routes: Routes = [
   {path: 'present', component: PresentComponent, data: {animation: 'Present'}},
   {path: 'past', component: PastComponent, data: {animation: 'Past'}},
   {path: 'future', component: FutureComponent},
   {path: 'consultTask/:id', component: ConsultTaskComponent, data: {animation: 'Consult'}},
-  {path: 'editTask/:id', component: EditTaskComponent, data: {animation: 'Edit'}}
+  {path: 'editTask/:id', component: EditTaskComponent, data: {animation: 'Edit'}},
+  {path: 'budget', component: BudgetComponent, data: {animation: 'Consult'}}
 ];
 
 @NgModule({

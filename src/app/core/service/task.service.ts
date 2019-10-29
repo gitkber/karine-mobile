@@ -14,6 +14,7 @@ export class TaskService {
 
   presentTasksRef: AngularFireList<Task> = null;
   futureTasksRef: AngularFireList<Task> = null;
+  budgetTasksRef: AngularFireList<Task> = null;
   tasksRef: AngularFireList<Task> = null;
 
   constructor(private db: AngularFireDatabase, private dateToStringPipe: DateToStringPipe) {
@@ -25,6 +26,9 @@ export class TaskService {
     });
     this.futureTasksRef = this.db.list(this.dbPathTasks, ref => {
       return ref.orderByChild('nextRepeat').startAt(this.dateToStringPipe.transform(today));
+    });
+    this.budgetTasksRef = this.db.list(this.dbPathTasks, ref => {
+      return ref.orderByChild('amount').startAt(0);
     });
 
     this.tasksRef = db.list(this.dbPathTasks);
@@ -42,6 +46,16 @@ export class TaskService {
 
   futureList(): Observable<Task[]> {
     return this.futureTasksRef.snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({key: c.payload.key, ...c.payload.val()})
+        )
+      )
+    );
+  }
+
+  budgetList(): Observable<Task[]> {
+    return this.budgetTasksRef.snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({key: c.payload.key, ...c.payload.val()})

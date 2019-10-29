@@ -52,7 +52,7 @@
           </div>
         </app-card-accordion>
         <!-- Repeat -->
-        <app-card-accordion cardAccordionId="collapseThree" nextCard="true"
+        <app-card-accordion cardAccordionId="collapseThree" nextCardAccordionId="collapseFour" [stepAction]="isNewTask"
                             (saveCard)="onSubmit()" #collapseThree>
           <div header>
             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree"
@@ -71,6 +71,20 @@
               <label for="extraRepeat">Extra</label>
               <input type="text" class="form-control" id="extraRepeat" formControlName="extraRepeat" required>
             </div>
+          </div>
+        </app-card-accordion>
+        <!-- Amount -->
+        <app-card-accordion cardAccordionId="collapseFour" nextCard="true"
+                            (saveCard)="onSubmit()" #collapseFour>
+          <div header>
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour"
+                    aria-expanded="false" aria-controls="collapseFour">
+              <span *ngIf="isNewTask">Amount</span>{{ task.amount }}
+            </button>
+          </div>
+          <div body>
+            <label for="amount">Amount</label>
+            <input type="text" class="form-control" id="amount" formControlName="amount" required>
           </div>
         </app-card-accordion>
 

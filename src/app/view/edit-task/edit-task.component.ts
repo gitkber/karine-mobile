@@ -46,7 +46,8 @@ export class EditTaskComponent implements OnInit {
       description: [this.task.description, Validators.required],
       category: [this.task.category, Validators.required],
       repeat: [this.task.repeat, Validators.required],
-      extraRepeat: [this.task.extraRepeat]
+      extraRepeat: [this.task.extraRepeat],
+      amount: [this.task.amount]
     });
   }
 
@@ -68,6 +69,7 @@ export class EditTaskComponent implements OnInit {
     this.task.repeat = this.formGroup.controls.repeat.value;
     this.task.extraRepeat = this.formGroup.controls.extraRepeat.value;
     this.task.nextRepeat = this.dateToStringPipe.transform(new Date());
+    this.task.amount = this.formGroup.controls.amount.value;
 
     if (this.isNewTask) {
       this.taskService.createTask(this.task);
@@ -77,7 +79,8 @@ export class EditTaskComponent implements OnInit {
           description: this.task.description,
           category: this.task.category,
           repeat: this.task.repeat,
-          extraRepeat: this.task.extraRepeat
+          extraRepeat: this.task.extraRepeat,
+          amount: this.task.amount
         })
         .catch(err => console.log(err));
     }

@@ -8,6 +8,7 @@ import { PastComponent } from './past/past.component';
 import { ConsultTaskComponent } from './consult-task/consult-task.component';
 import { EditTaskComponent } from './edit-task/edit-task.component';
 import { ViewRoutingModule } from './view-routing.module';
+import { BudgetComponent } from './budget/budget.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ViewRoutingModule } from './view-routing.module';
     FutureComponent,
     PastComponent,
     ConsultTaskComponent,
-    EditTaskComponent
+    EditTaskComponent,
+    BudgetComponent
   ],
   exports: [
     PresentComponent,

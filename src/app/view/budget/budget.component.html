@@ -1,19 +1,13 @@
 <app-toolbar>
-  <div card-left class="card" [class.selected]="todaySelected" (click)="goPresent()">
+  <div card-left class="card selected">
     <div style="padding: 0 0.2em 0 0.2em;">
-      <div>Today - {{ today | date: 'd MMM' }}</div>
-      <div *ngIf="todayTasksSize">Total : {{todayTasksSize}}</div>
-    </div>
-  </div>
-  <div card-right class="card" [class.selected]="tomorrowSelected" (click)="goFuture()">
-    <div style="padding: 0 0.2em 0 0.2em;">
-      <div>Tomorrow</div>
-      <div *ngIf="tomorrowTasksSize">Total : {{tomorrowTasksSize}}</div>
+      <div>Budget</div>
+<!--      <div *ngIf="historyTasks">Total : {{historyTasks.length}}</div>-->
     </div>
   </div>
   <div action>
-    <a class="circle-link" [routerLink]="['/editTask', '0']">
-      <i class="fas fa-plus"></i>
+    <a class="circle-link float-right" [routerLink]="['/']">
+      <i class="fas fa-times"></i>
     </a>
   </div>
 </app-toolbar>
@@ -30,8 +24,9 @@
           <div class="col-8" (click)="consultTask(task)">
             <div class="card-title">{{ task.description }}</div>
           </div>
-          <div class="col-1" (click)="acceptTask(task)">
-            <i class="fa fa-thumbs-up"></i>
+          <div class="col-2">
+<!--            <i class="fa fa-thumbs-up"></i>-->
+            {{ task.amount }}
           </div>
         </div>
       </div>
