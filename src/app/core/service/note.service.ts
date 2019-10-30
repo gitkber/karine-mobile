@@ -12,8 +12,8 @@ export class NoteService {
 
   private dbPathNotes = '/notes';
 
-  presentNotesRef: AngularFireList<Note> = null;
-  futureNotesRef: AngularFireList<Note> = null;
+  todayNotesRef: AngularFireList<Note> = null;
+  toComeUpNotesRef: AngularFireList<Note> = null;
   budgetNotesRef: AngularFireList<Note> = null;
   notesRef: AngularFireList<Note> = null;
 
@@ -21,10 +21,10 @@ export class NoteService {
     const today: Date = new Date();
     today.setHours(23, 59, 59);
 
-    this.presentNotesRef = this.db.list(this.dbPathNotes, ref => {
+    this.todayNotesRef = this.db.list(this.dbPathNotes, ref => {
       return ref.orderByChild('nextRepeat').endAt(this.dateToStringPipe.transform(today));
     });
-    this.futureNotesRef = this.db.list(this.dbPathNotes, ref => {
+    this.toComeUpNotesRef = this.db.list(this.dbPathNotes, ref => {
       return ref.orderByChild('nextRepeat').startAt(this.dateToStringPipe.transform(today));
     });
     this.budgetNotesRef = this.db.list(this.dbPathNotes, ref => {
@@ -34,8 +34,8 @@ export class NoteService {
     this.notesRef = db.list(this.dbPathNotes);
   }
 
-  presentList(): Observable<Note[]> {
-    return this.presentNotesRef.snapshotChanges().pipe(
+  todayNoteList(): Observable<Note[]> {
+    return this.todayNotesRef.snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({key: c.payload.key, ...c.payload.val()})
@@ -44,8 +44,8 @@ export class NoteService {
     );
   }
 
-  futureList(): Observable<Note[]> {
-    return this.futureNotesRef.snapshotChanges().pipe(
+  toComeUpList(): Observable<Note[]> {
+    return this.toComeUpNotesRef.snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({key: c.payload.key, ...c.payload.val()})

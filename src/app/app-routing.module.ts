@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 // {path: '**', component: PageNotFoundComponent}];
 
 const routes: Routes = [
-  {path: '', redirectTo: 'view/present', pathMatch: 'full'},
+  {path: '', redirectTo: 'view/today-notes', pathMatch: 'full'},
   { // lazy loading
     path: 'view',
     loadChildren: './view/view.module#ViewModule'
