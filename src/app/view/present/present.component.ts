@@ -35,10 +35,10 @@ import { FacadeService } from '../../core/service/facade.service';
 export class PresentComponent implements OnInit {
 
   today: Date = new Date();
-  tasks: Note[];
+  notes: Note[];
 
-  todayTasksSize: number;
-  tomorrowTasksSize: number;
+  todayNotesSize: number;
+  tomorrowNotesSize: number;
 
   todaySelected: boolean;
   tomorrowSelected: boolean;
@@ -47,8 +47,8 @@ export class PresentComponent implements OnInit {
 
   ngOnInit() {
     this.goPresent();
-    this.facadeService.taskService.futureList().subscribe(tasks => {
-      this.tomorrowTasksSize = tasks.length;
+    this.facadeService.noteService.futureList().subscribe(notes => {
+      this.tomorrowNotesSize = notes.length;
     });
   }
 
@@ -56,26 +56,26 @@ export class PresentComponent implements OnInit {
     return getPathOfCategory(category);
   }
 
-  acceptTask(task: Note) {
-    this.facadeService.acceptTask(task);
+  acceptNote(note: Note) {
+    this.facadeService.acceptNote(note);
   }
 
-  consultTask(task: Note) {
-    this.router.navigate(['/consultTask', task.key]);
+  consultNote(note: Note) {
+    this.router.navigate(['/consultTask', note.key]);
   }
 
   goFuture() {
-    this.facadeService.taskService.futureList().subscribe(tasks => {
-      this.tasks = tasks;
+    this.facadeService.noteService.futureList().subscribe(notes => {
+      this.notes = notes;
       this.todaySelected = false;
       this.tomorrowSelected = true;
     });
   }
 
   goPresent() {
-    this.facadeService.taskService.presentList().subscribe(tasks => {
-      this.tasks = tasks;
-      this.todayTasksSize = tasks.length;
+    this.facadeService.noteService.presentList().subscribe(notes => {
+      this.notes = notes;
+      this.todayNotesSize = notes.length;
       this.todaySelected = true;
       this.tomorrowSelected = false;
     });

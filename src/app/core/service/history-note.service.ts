@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
-import { HistoryNote, Repeat, Note } from '../model';
+import { HistoryNote, Note } from '../model';
 import { DateToStringPipe } from '../../shared/pipe/date-to-string.pipe';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class HistoryTaskService {
+export class HistoryNoteService {
 
   private dbPathHistory = '/historyTasks';
 
@@ -18,13 +18,13 @@ export class HistoryTaskService {
     this.historyRef = db.list(this.dbPathHistory);
   }
 
-  historyTasksListByTask(taskKey: string): Observable<HistoryNote[]> {
+  historyNotesListByTask(taskKey: string): Observable<HistoryNote[]> {
     return this.snapshotChangesMap(this.db.list(this.dbPathHistory, query => {
       return query.orderByChild('taskKey').equalTo(taskKey);
     }));
   }
 
-  doneHistoryTasksList(): Observable<HistoryNote[]> {
+  doneHistoryNotesList(): Observable<HistoryNote[]> {
     return this.snapshotChangesMap(this.db.list(this.dbPathHistory, query => {
       return query.orderByChild('done').equalTo(true);
     }));
@@ -38,14 +38,14 @@ export class HistoryTaskService {
     );
   }
 
-  createHistoryTask(task: Note, done: boolean) {
-    const ht: HistoryNote = new HistoryNote();
-    ht.taskKey = task.key;
-    ht.description = task.description;
-    ht.category = task.category;
-    ht.done = done;
-    ht.hDate = this.dateToStringPipe.transform(new Date());
-    this.historyRef.push(ht);
+  createHistoryNote(note: Note, done: boolean) {
+    const historyNote: HistoryNote = new HistoryNote();
+    historyNote.taskKey = note.key;
+    historyNote.description = note.description;
+    historyNote.category = note.category;
+    historyNote.done = done;
+    historyNote.hDate = this.dateToStringPipe.transform(new Date());
+    this.historyRef.push(historyNote);
   }
 
 }

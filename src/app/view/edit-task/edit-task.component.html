@@ -25,7 +25,7 @@
           <div header>
             <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
                     aria-controls="collapseOne">
-              <span *ngIf="isNewTask">Description</span>{{ task.description }}
+              <span *ngIf="isNewTask">Description</span>{{ note.description }}
             </button>
           </div>
           <div body>
@@ -39,7 +39,7 @@
           <div header>
             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="false" aria-controls="collapseTwo">
-              <span *ngIf="isNewTask">Category</span>{{ task.category }}
+              <span *ngIf="isNewTask">Category</span>{{ note.category }}
             </button>
           </div>
           <div body>
@@ -57,7 +57,7 @@
           <div header>
             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree"
                     aria-expanded="false" aria-controls="collapseThree">
-              <span *ngIf="!task.repeat">Repeat</span>{{ task.repeat }} {{ task.extraRepeat }}
+              <span *ngIf="!note.repeat">Repeat</span>{{ note.repeat }} {{ note.extraRepeat }}
             </button>
           </div>
           <div body>
@@ -79,7 +79,7 @@
           <div header>
             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour"
                     aria-expanded="false" aria-controls="collapseFour">
-              <span *ngIf="isNewTask">Amount</span>{{ task.amount }}
+              <span *ngIf="isNewTask">Amount</span>{{ note.amount }}
             </button>
           </div>
           <div body>

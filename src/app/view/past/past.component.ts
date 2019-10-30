@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HistoryTaskService } from '../../core/service/history-task.service';
+import { HistoryNoteService } from '../../core/service/history-note.service';
 import { Category, getPathOfCategory, HistoryNote } from '../../core/model';
 
 @Component({
@@ -9,13 +9,13 @@ import { Category, getPathOfCategory, HistoryNote } from '../../core/model';
 })
 export class PastComponent implements OnInit {
 
-  historyTasks: HistoryNote[];
+  historyNotes: HistoryNote[];
 
-  constructor(private historyTaskService: HistoryTaskService) { }
+  constructor(private historyNoteService: HistoryNoteService) { }
 
   ngOnInit() {
-    this.historyTaskService.doneHistoryTasksList().subscribe(historyTasks => {
-      this.historyTasks = historyTasks;
+    this.historyNoteService.doneHistoryNotesList().subscribe(historyTasks => {
+      this.historyNotes = historyTasks;
     });
   }
 

@@ -10,7 +10,7 @@
       <a class="circle-link float-right" (click)="backView()">
         <i class="fas fa-times"></i>
       </a>
-      <a *ngIf="task" class="circle-link float-right" [routerLink]="['/editTask', task.key]">
+      <a *ngIf="note" class="circle-link float-right" [routerLink]="['/editTask', note.key]">
         <i class="fas fa-pencil-alt"></i>
       </a>
     </div>
@@ -18,15 +18,15 @@
 </app-toolbar>
 
 <div class="container-fluid">
-  <div class="card shadow-sm mb-2" *ngIf="task">
+  <div class="card shadow-sm mb-2" *ngIf="note">
     <div class="card-body">
       <div class="row align-items-center">
         <div class="col-2">
-          <app-category-icon [srcImg]="getPath(task.category)"></app-category-icon>
+          <app-category-icon [srcImg]="getPath(note.category)"></app-category-icon>
         </div>
         <div class="col-8">
-          <div class="card-title">{{ task.description }}</div>
-          <div class="card-subtitle text-muted">{{task.repeat}} {{task.extraRepeat}} </div>
+          <div class="card-title">{{ note.description }}</div>
+          <div class="card-subtitle text-muted">{{note.repeat}} {{note.extraRepeat}} </div>
         </div>
         <div class="col-1">
           <!--        <i class="fa fa-thumbs-up"></i>-->
@@ -34,11 +34,11 @@
       </div>
     </div>
     <div class="card-footer">
-      <div class="card-subtitle text-muted">{{ task.nextRepeat | stringToDate | date : 'EEEE, d MMMM yyyy' }}</div>
+      <div class="card-subtitle text-muted">{{ note.nextRepeat | stringToDate | date : 'EEEE, d MMMM yyyy' }}</div>
     </div>
   </div>
 
-  <div class="card shadow-sm mb-2" *ngIf="task">
+  <div class="card shadow-sm mb-2" *ngIf="note">
     <div class="card-body">
       <div class="row align-items-center">
         <div class="col-12">
@@ -47,7 +47,7 @@
       </div>
     </div>
     <div class="card-footer">
-      <div *ngFor="let history of historyTasks">
+      <div *ngFor="let history of historyNotes">
         <div class="card-subtitle text-muted">
           {{history.hDate | stringToDate | date: 'EEEE, d MMMM yyyy, h:mm:ss'}}
         </div>

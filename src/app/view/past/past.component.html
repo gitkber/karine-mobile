@@ -2,7 +2,7 @@
   <div card-left class="card selected">
       <div style="padding: 0 0.2em 0 0.2em;">
         <div>Tâches terminées</div>
-        <div *ngIf="historyTasks">Total : {{historyTasks.length}}</div>
+        <div *ngIf="historyNotes">Total : {{historyNotes.length}}</div>
       </div>
     </div>
   <div action>
@@ -13,14 +13,14 @@
 </app-toolbar>
 
 <div class="container-fluid">
-  <div class="card shadow-sm mb-2" *ngFor="let historyTask of historyTasks">
+  <div class="card shadow-sm mb-2" *ngFor="let historyNote of historyNotes">
     <div class="card-body">
       <div class="row align-items-center">
         <div class="col-2">
-          <app-category-icon [srcImg]="getPath(historyTask.category)"></app-category-icon>
+          <app-category-icon [srcImg]="getPath(historyNote.category)"></app-category-icon>
         </div>
         <div class="col-8">
-          <div class="card-title">{{ historyTask.description }}</div>
+          <div class="card-title">{{ historyNote.description }}</div>
         </div>
         <div class="col-1">
           <!--          <i class="fa fa-thumbs-up"></i>-->
@@ -28,7 +28,7 @@
       </div>
     </div>
     <div class="card-footer">
-      <div class="card-subtitle text-muted">{{ historyTask.hDate | stringToDate | date : 'EEEE, d MMMM yyyy' }}</div>
+      <div class="card-subtitle text-muted">{{ historyNote.hDate | stringToDate | date : 'EEEE, d MMMM yyyy' }}</div>
     </div>
   </div>
 </div>

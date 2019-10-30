@@ -10,15 +10,15 @@ import { Router } from '@angular/router';
 })
 export class BudgetComponent implements OnInit {
 
-  tasks: Note[];
-  tasksSize: number;
+  notes: Note[];
+  notesSize: number;
 
   constructor(private facadeService: FacadeService, private router: Router) { }
 
   ngOnInit() {
-    this.facadeService.taskService.budgetList().subscribe(tasks => {
-      this.tasks = tasks;
-      this.tasksSize = tasks.length;
+    this.facadeService.noteService.budgetList().subscribe(notes => {
+      this.notes = notes;
+      this.notesSize = notes.length;
     });
   }
 
@@ -26,8 +26,8 @@ export class BudgetComponent implements OnInit {
     return getPathOfCategory(category);
   }
 
-  consultTask(task: Note) {
-    this.router.navigate(['/consultTask', task.key]);
+  consultTask(note: Note) {
+    this.router.navigate(['/consultTask', note.key]);
   }
 
 }

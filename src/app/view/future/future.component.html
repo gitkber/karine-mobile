@@ -2,7 +2,7 @@
   <div card-left>
     <div style="padding: 0 0.2em 0 0.2em;">
       <div>Today - {{ today | date: 'd MMM' }}</div>
-      <div *ngIf="tasks">total : {{tasks.length}}</div>
+      <div *ngIf="notes">total : {{notes.length}}</div>
     </div>
   </div>
   <div card-right class="selected">
@@ -19,14 +19,14 @@
 </app-toolbar>
 
 <div class="container-fluid">
-  <div class="card shadow-sm mb-2" *ngFor="let task of tasks">
+  <div class="card shadow-sm mb-2" *ngFor="let note of notes">
     <div class="card-body">
-      <div class="row align-items-center" (click)="consultTask(task)">
+      <div class="row align-items-center" (click)="consultTask(note)">
         <div class="col-2">
-          <app-category-icon [srcImg]="getPath(task.category)"></app-category-icon>
+          <app-category-icon [srcImg]="getPath(note.category)"></app-category-icon>
         </div>
         <div class="col-8">
-          <div class="card-title">{{ task.description }}</div>
+          <div class="card-title">{{ note.description }}</div>
         </div>
         <div class="col-1">
           <!--          <i class="fa fa-thumbs-up"></i>-->
@@ -34,7 +34,7 @@
       </div>
     </div>
     <div class="card-footer">
-      <div class="card-subtitle text-muted">{{ task.nextRepeat | stringToDate | date : 'EEEE, d MMMM yyyy' }}</div>
+      <div class="card-subtitle text-muted">{{ note.nextRepeat | stringToDate | date : 'EEEE, d MMMM yyyy' }}</div>
     </div>
   </div>
 </div>

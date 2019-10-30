@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { DateToStringPipe } from '../../shared/pipe/date-to-string.pipe';
 import { Category, Repeat, Note } from '../../core/model';
-import { TaskService } from '../../core/service/task.service';
+import { NoteService } from '../../core/service/note.service';
 
 @Component({
   selector: 'app-edit-task',
@@ -13,7 +13,7 @@ import { TaskService } from '../../core/service/task.service';
 })
 export class EditTaskComponent implements OnInit {
 
-  task: Note;
+  note: Note;
 
   formGroup: FormGroup;
   isNewTask: boolean;
@@ -22,7 +22,7 @@ export class EditTaskComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private formBuilder: FormBuilder,
-    private taskService: TaskService,
+    private noteService: NoteService,
     private dateToStringPipe: DateToStringPipe
   ) { }
 
@@ -30,11 +30,11 @@ export class EditTaskComponent implements OnInit {
     const id: string = this.route.snapshot.paramMap.get('id');
     this.isNewTask = id === '0';
     if (this.isNewTask) {
-      this.task = new Note();
+      this.note = new Note();
       this.initFormGroup();
     } else {
-      this.taskService.getTask(id).subscribe(task => {
-        this.task = task;
+      this.noteService.getNote(id).subscribe(note => {
+        this.note = note;
         this.initFormGroup();
       });
     }
@@ -42,12 +42,12 @@ export class EditTaskComponent implements OnInit {
 
   private initFormGroup() {
     this.formGroup = this.formBuilder.group({
-      key: [this.task.key],
-      description: [this.task.description, Validators.required],
-      category: [this.task.category, Validators.required],
-      repeat: [this.task.repeat, Validators.required],
-      extraRepeat: [this.task.extraRepeat],
-      amount: [this.task.amount]
+      key: [this.note.key],
+      description: [this.note.description, Validators.required],
+      category: [this.note.category, Validators.required],
+      repeat: [this.note.repeat, Validators.required],
+      extraRepeat: [this.note.extraRepeat],
+      amount: [this.note.amount]
     });
   }
 
@@ -64,23 +64,23 @@ export class EditTaskComponent implements OnInit {
   // }
 
   onSubmit() {
-    this.task.description = this.formGroup.controls.description.value;
-    this.task.category = this.formGroup.controls.category.value;
-    this.task.repeat = this.formGroup.controls.repeat.value;
-    this.task.extraRepeat = this.formGroup.controls.extraRepeat.value;
-    this.task.nextRepeat = this.dateToStringPipe.transform(new Date());
-    this.task.amount = this.formGroup.controls.amount.value;
+    this.note.description = this.formGroup.controls.description.value;
+    this.note.category = this.formGroup.controls.category.value;
+    this.note.repeat = this.formGroup.controls.repeat.value;
+    this.note.extraRepeat = this.formGroup.controls.extraRepeat.value;
+    this.note.nextRepeat = this.dateToStringPipe.transform(new Date());
+    this.note.amount = this.formGroup.controls.amount.value;
 
     if (this.isNewTask) {
-      this.taskService.createTask(this.task);
+      this.noteService.createNote(this.note);
     } else {
-      this.taskService
-        .updateTask(this.task.key, {
-          description: this.task.description,
-          category: this.task.category,
-          repeat: this.task.repeat,
-          extraRepeat: this.task.extraRepeat,
-          amount: this.task.amount
+      this.noteService
+        .updateNote(this.note.key, {
+          description: this.note.description,
+          category: this.note.category,
+          repeat: this.note.repeat,
+          extraRepeat: this.note.extraRepeat,
+          amount: this.note.amount
         })
         .catch(err => console.log(err));
     }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Category, getPathOfCategory, Note } from '../../core/model';
-import { TaskService } from '../../core/service/task.service';
+import { NoteService } from '../../core/service/note.service';
 
 @Component({
   selector: 'app-future',
@@ -11,13 +11,13 @@ import { TaskService } from '../../core/service/task.service';
 export class FutureComponent implements OnInit {
 
   today: Date = new Date();
-  tasks: Note[];
+  notes: Note[];
 
-  constructor(private taskService: TaskService, private router: Router) { }
+  constructor(private noteService: NoteService, private router: Router) { }
 
   ngOnInit() {
-    this.taskService.futureList().subscribe(tasks => {
-      this.tasks = tasks;
+    this.noteService.futureList().subscribe(tasks => {
+      this.notes = tasks;
     });
   }
 

@@ -11,8 +11,8 @@ import { FacadeService } from '../../core/service/facade.service';
 })
 export class ConsultTaskComponent implements OnInit {
 
-  task: Note;
-  historyTasks: HistoryNote[];
+  note: Note;
+  historyNotes: HistoryNote[];
 
   constructor(
     private route: ActivatedRoute,
@@ -22,12 +22,12 @@ export class ConsultTaskComponent implements OnInit {
 
   ngOnInit() {
     const id: string = this.route.snapshot.paramMap.get('id');
-    this.facadeService.taskService.getTask(id).subscribe(task => {
-      this.task = task;
+    this.facadeService.noteService.getNote(id).subscribe(note => {
+      this.note = note;
     });
 
-    this.facadeService.historyTaskService.historyTasksListByTask(id).subscribe(historyTasks => {
-      this.historyTasks = historyTasks;
+    this.facadeService.historyNoteService.historyNotesListByTask(id).subscribe(historyNotes => {
+      this.historyNotes = historyNotes;
     });
   }
 

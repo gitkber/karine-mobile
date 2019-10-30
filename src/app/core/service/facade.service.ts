@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { TaskService } from './task.service';
-import { HistoryTaskService } from './history-task.service';
+import { NoteService } from './note.service';
+import { HistoryNoteService } from './history-note.service';
 import { DateToStringPipe } from '../../shared/pipe/date-to-string.pipe';
-import { Repeat, Note } from '../model';
+import { Note, Repeat } from '../model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,23 +10,23 @@ import { Repeat, Note } from '../model';
 export class FacadeService {
 
   constructor(
-    public taskService: TaskService,
-    public historyTaskService: HistoryTaskService,
+    public noteService: NoteService,
+    public historyNoteService: HistoryNoteService,
     private dateToStringPipe: DateToStringPipe
   ) { }
 
-  acceptTask(task: Note) {
-    const nextDate: Date = this.calculateNextDate(new Date(), task.repeat, task.extraRepeat);
+  acceptNote(note: Note) {
+    const nextDate: Date = this.calculateNextDate(new Date(), note.repeat, note.extraRepeat);
 
-    this.historyTaskService.createHistoryTask(task, nextDate == null);
+    this.historyNoteService.createHistoryNote(note, nextDate == null);
 
     if (nextDate === null) {
-      // remove task
-      this.taskService.deleteTask(task.key).catch(err => console.log(err));
+      // remove note
+      this.noteService.deleteNote(note.key).catch(err => console.log(err));
     } else {
       // save next date
-      task.nextRepeat = this.dateToStringPipe.transform(nextDate);
-      this.taskService.updateTask(task.key, {nextRepeat: task.nextRepeat}).catch(err => console.log(err));
+      note.nextRepeat = this.dateToStringPipe.transform(nextDate);
+      this.noteService.updateNote(note.key, {nextRepeat: note.nextRepeat}).catch(err => console.log(err));
     }
   }
 

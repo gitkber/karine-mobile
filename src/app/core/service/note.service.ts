@@ -8,34 +8,34 @@ import { Note } from '../model';
 @Injectable({
   providedIn: 'root'
 })
-export class TaskService {
+export class NoteService {
 
-  private dbPathTasks = '/tasks';
+  private dbPathNotes = '/tasks';
 
-  presentTasksRef: AngularFireList<Note> = null;
-  futureTasksRef: AngularFireList<Note> = null;
-  budgetTasksRef: AngularFireList<Note> = null;
-  tasksRef: AngularFireList<Note> = null;
+  presentNotesRef: AngularFireList<Note> = null;
+  futureNotesRef: AngularFireList<Note> = null;
+  budgetNotesRef: AngularFireList<Note> = null;
+  notesRef: AngularFireList<Note> = null;
 
   constructor(private db: AngularFireDatabase, private dateToStringPipe: DateToStringPipe) {
     const today: Date = new Date();
     today.setHours(23, 59, 59);
 
-    this.presentTasksRef = this.db.list(this.dbPathTasks, ref => {
+    this.presentNotesRef = this.db.list(this.dbPathNotes, ref => {
       return ref.orderByChild('nextRepeat').endAt(this.dateToStringPipe.transform(today));
     });
-    this.futureTasksRef = this.db.list(this.dbPathTasks, ref => {
+    this.futureNotesRef = this.db.list(this.dbPathNotes, ref => {
       return ref.orderByChild('nextRepeat').startAt(this.dateToStringPipe.transform(today));
     });
-    this.budgetTasksRef = this.db.list(this.dbPathTasks, ref => {
+    this.budgetNotesRef = this.db.list(this.dbPathNotes, ref => {
       return ref.orderByChild('amount').startAt(0);
     });
 
-    this.tasksRef = db.list(this.dbPathTasks);
+    this.notesRef = db.list(this.dbPathNotes);
   }
 
   presentList(): Observable<Note[]> {
-    return this.presentTasksRef.snapshotChanges().pipe(
+    return this.presentNotesRef.snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({key: c.payload.key, ...c.payload.val()})
@@ -45,7 +45,7 @@ export class TaskService {
   }
 
   futureList(): Observable<Note[]> {
-    return this.futureTasksRef.snapshotChanges().pipe(
+    return this.futureNotesRef.snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({key: c.payload.key, ...c.payload.val()})
@@ -55,7 +55,7 @@ export class TaskService {
   }
 
   budgetList(): Observable<Note[]> {
-    return this.budgetTasksRef.snapshotChanges().pipe(
+    return this.budgetNotesRef.snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({key: c.payload.key, ...c.payload.val()})
@@ -64,27 +64,27 @@ export class TaskService {
     );
   }
 
-  getTask(key: string): Observable<Note> {
-    const ref: AngularFireObject<Note> = this.db.object(this.dbPathTasks + `/${key}`);
+  getNote(key: string): Observable<Note> {
+    const ref: AngularFireObject<Note> = this.db.object(this.dbPathNotes + `/${key}`);
     return ref.snapshotChanges().pipe(
       map(c => ({key: c.payload.key, ...c.payload.val()}))
     );
   }
 
-  createTask(task: Note): void {
-    this.tasksRef.push(task);
+  createNote(note: Note): void {
+    this.notesRef.push(note);
   }
 
-  updateTask(key: string, value: any): Promise<void> {
-    return this.tasksRef.update(key, value);
+  updateNote(key: string, value: any): Promise<void> {
+    return this.notesRef.update(key, value);
   }
 
-  deleteTask(key: string): Promise<void> {
-    return this.tasksRef.remove(key);
+  deleteNote(key: string): Promise<void> {
+    return this.notesRef.remove(key);
   }
 
   deleteAll(): Promise<void> {
-    return this.tasksRef.remove();
+    return this.notesRef.remove();
   }
 
 }
