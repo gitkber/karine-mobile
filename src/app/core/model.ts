@@ -1,4 +1,4 @@
-export class HistoryTask {
+export class HistoryNote {
   key: string;
   taskKey: string;
   description: string;
@@ -7,10 +7,11 @@ export class HistoryTask {
   done: boolean;
 }
 
-export class Task {
+export class Note {
   key: string;
-  description: string;
   category: Category;
+  description: string;
+  tagList: Tag[] = [];
   repeat: Repeat;
   extraRepeat: string;
   nextRepeat: string;
@@ -18,10 +19,16 @@ export class Task {
 }
 
 export enum Category {
+  TASK = 'TASK',
+  OBJECTIVE = 'OBJECTIVE',
+  BUDGET = 'BUDGET',
+}
+
+export enum Tag {
   HOME = 'HOME',
   TRANSPORT = 'TRANSPORT',
   WELLNESS = 'WELLNESS',
-  OBJECTIVE = 'OBJECTIVE',
+  MEDICAL = 'MEDICAL',
   OTHER = 'OTHER',
 }
 
@@ -38,15 +45,27 @@ export enum Repeat {
 
 export function getPathOfCategory(category: Category): string {
   switch (category) {
-    case Category.HOME:
-      return '../../../../assets/img/category/budget_house2_32.png';
-    case Category.TRANSPORT:
+    case Category.TASK:
       return '../../../../assets/img/category/budget_car_32.png';
-    case Category.WELLNESS:
-      return '../../../../assets/img/category/health_prenatal_32.png';
     case Category.OBJECTIVE:
       return '../../../../assets/img/category/objective_target_32.png';
-    case Category.OTHER:
+    case Category.BUDGET:
+      return '../../../../assets/img/category/budget_house2_32.png';
+  }
+  return '';
+}
+
+export function getPathOfTag(tag: Tag): string {
+  switch (tag) {
+    case Tag.HOME:
+      return '../../../../assets/img/category/budget_house2_32.png';
+    case Tag.TRANSPORT:
+      return '../../../../assets/img/category/budget_car_32.png';
+    case Tag.WELLNESS:
+      return '../../../../assets/img/category/health_prenatal_32.png';
+    case Tag.MEDICAL:
+      return '../../../../assets/img/category/objective_target_32.png';
+    case Tag.OTHER:
       return '../../../../assets/img/category/other_catalog_32.png';
   }
   return '';

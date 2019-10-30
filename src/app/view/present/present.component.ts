@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { animate, query, stagger, style, transition, trigger } from '@angular/animations';
-import { Category, getPathOfCategory, Task } from '../../core/model';
+import { Category, getPathOfCategory, Note } from '../../core/model';
 import { FacadeService } from '../../core/service/facade.service';
 
 @Component({
@@ -35,7 +35,7 @@ import { FacadeService } from '../../core/service/facade.service';
 export class PresentComponent implements OnInit {
 
   today: Date = new Date();
-  tasks: Task[];
+  tasks: Note[];
 
   todayTasksSize: number;
   tomorrowTasksSize: number;
@@ -56,11 +56,11 @@ export class PresentComponent implements OnInit {
     return getPathOfCategory(category);
   }
 
-  acceptTask(task: Task) {
+  acceptTask(task: Note) {
     this.facadeService.acceptTask(task);
   }
 
-  consultTask(task: Task) {
+  consultTask(task: Note) {
     this.router.navigate(['/consultTask', task.key]);
   }
 

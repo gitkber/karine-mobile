@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { DateToStringPipe } from '../../shared/pipe/date-to-string.pipe';
-import { Category, Repeat, Task } from '../../core/model';
+import { Category, Repeat, Note } from '../../core/model';
 import { TaskService } from '../../core/service/task.service';
 
 @Component({
@@ -13,7 +13,7 @@ import { TaskService } from '../../core/service/task.service';
 })
 export class EditTaskComponent implements OnInit {
 
-  task: Task;
+  task: Note;
 
   formGroup: FormGroup;
   isNewTask: boolean;
@@ -30,7 +30,7 @@ export class EditTaskComponent implements OnInit {
     const id: string = this.route.snapshot.paramMap.get('id');
     this.isNewTask = id === '0';
     if (this.isNewTask) {
-      this.task = new Task();
+      this.task = new Note();
       this.initFormGroup();
     } else {
       this.taskService.getTask(id).subscribe(task => {

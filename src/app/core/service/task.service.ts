@@ -3,7 +3,7 @@ import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angula
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { DateToStringPipe } from '../../shared/pipe/date-to-string.pipe';
-import { Task } from '../model';
+import { Note } from '../model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +12,10 @@ export class TaskService {
 
   private dbPathTasks = '/tasks';
 
-  presentTasksRef: AngularFireList<Task> = null;
-  futureTasksRef: AngularFireList<Task> = null;
-  budgetTasksRef: AngularFireList<Task> = null;
-  tasksRef: AngularFireList<Task> = null;
+  presentTasksRef: AngularFireList<Note> = null;
+  futureTasksRef: AngularFireList<Note> = null;
+  budgetTasksRef: AngularFireList<Note> = null;
+  tasksRef: AngularFireList<Note> = null;
 
   constructor(private db: AngularFireDatabase, private dateToStringPipe: DateToStringPipe) {
     const today: Date = new Date();
@@ -34,7 +34,7 @@ export class TaskService {
     this.tasksRef = db.list(this.dbPathTasks);
   }
 
-  presentList(): Observable<Task[]> {
+  presentList(): Observable<Note[]> {
     return this.presentTasksRef.snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
@@ -44,7 +44,7 @@ export class TaskService {
     );
   }
 
-  futureList(): Observable<Task[]> {
+  futureList(): Observable<Note[]> {
     return this.futureTasksRef.snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
@@ -54,7 +54,7 @@ export class TaskService {
     );
   }
 
-  budgetList(): Observable<Task[]> {
+  budgetList(): Observable<Note[]> {
     return this.budgetTasksRef.snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
@@ -64,14 +64,14 @@ export class TaskService {
     );
   }
 
-  getTask(key: string): Observable<Task> {
-    const ref: AngularFireObject<Task> = this.db.object(this.dbPathTasks + `/${key}`);
+  getTask(key: string): Observable<Note> {
+    const ref: AngularFireObject<Note> = this.db.object(this.dbPathTasks + `/${key}`);
     return ref.snapshotChanges().pipe(
       map(c => ({key: c.payload.key, ...c.payload.val()}))
     );
   }
 
-  createTask(task: Task): void {
+  createTask(task: Note): void {
     this.tasksRef.push(task);
   }
 

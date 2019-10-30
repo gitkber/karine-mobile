@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Category, getPathOfCategory, Task } from '../../core/model';
+import { Category, getPathOfCategory, Note } from '../../core/model';
 import { TaskService } from '../../core/service/task.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { TaskService } from '../../core/service/task.service';
 export class FutureComponent implements OnInit {
 
   today: Date = new Date();
-  tasks: Task[];
+  tasks: Note[];
 
   constructor(private taskService: TaskService, private router: Router) { }
 
@@ -21,7 +21,7 @@ export class FutureComponent implements OnInit {
     });
   }
 
-  consultTask(task: Task) {
+  consultTask(task: Note) {
     this.router.navigate(['/consultTask', task.key]);
   }
 

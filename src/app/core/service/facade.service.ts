@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { TaskService } from './task.service';
 import { HistoryTaskService } from './history-task.service';
 import { DateToStringPipe } from '../../shared/pipe/date-to-string.pipe';
-import { Repeat, Task } from '../model';
+import { Repeat, Note } from '../model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class FacadeService {
     private dateToStringPipe: DateToStringPipe
   ) { }
 
-  acceptTask(task: Task) {
+  acceptTask(task: Note) {
     const nextDate: Date = this.calculateNextDate(new Date(), task.repeat, task.extraRepeat);
 
     this.historyTaskService.createHistoryTask(task, nextDate == null);

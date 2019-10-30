@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { Category, getPathOfCategory, HistoryTask, Task } from '../../core/model';
+import { Category, getPathOfCategory, HistoryNote, Note } from '../../core/model';
 import { FacadeService } from '../../core/service/facade.service';
 
 @Component({
@@ -11,8 +11,8 @@ import { FacadeService } from '../../core/service/facade.service';
 })
 export class ConsultTaskComponent implements OnInit {
 
-  task: Task;
-  historyTasks: HistoryTask[];
+  task: Note;
+  historyTasks: HistoryNote[];
 
   constructor(
     private route: ActivatedRoute,

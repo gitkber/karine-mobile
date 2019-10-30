@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FacadeService } from '../../core/service/facade.service';
-import { Category, getPathOfCategory, Task } from '../../core/model';
+import { Category, getPathOfCategory, Note } from '../../core/model';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class BudgetComponent implements OnInit {
 
-  tasks: Task[];
+  tasks: Note[];
   tasksSize: number;
 
   constructor(private facadeService: FacadeService, private router: Router) { }
@@ -26,7 +26,7 @@ export class BudgetComponent implements OnInit {
     return getPathOfCategory(category);
   }
 
-  consultTask(task: Task) {
+  consultTask(task: Note) {
     this.router.navigate(['/consultTask', task.key]);
   }
 

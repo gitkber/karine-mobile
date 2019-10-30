@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HistoryTaskService } from '../../core/service/history-task.service';
-import { Category, getPathOfCategory, HistoryTask } from '../../core/model';
+import { Category, getPathOfCategory, HistoryNote } from '../../core/model';
 
 @Component({
   selector: 'app-past',
@@ -9,7 +9,7 @@ import { Category, getPathOfCategory, HistoryTask } from '../../core/model';
 })
 export class PastComponent implements OnInit {
 
-  historyTasks: HistoryTask[];
+  historyTasks: HistoryNote[];
 
   constructor(private historyTaskService: HistoryTaskService) { }
 
