@@ -19,13 +19,13 @@
     <div id="accordion">
       <form [formGroup]="formGroup">
         <!-- description -->
-        <app-card-accordion cardAccordionId="collapseOne" nextCardAccordionId="collapseTwo" [open]="isNewTask"
-                            [stepAction]="isNewTask"
+        <app-card-accordion cardAccordionId="collapseOne" nextCardAccordionId="collapseTwo" [open]="isNewNote"
+                            [stepAction]="isNewNote"
                             (saveCard)="onSubmit()">
           <div header>
             <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
                     aria-controls="collapseOne">
-              <span *ngIf="isNewTask">Description</span>{{ note.description }}
+              <span *ngIf="isNewNote">Description</span>{{ note.description }}
             </button>
           </div>
           <div body>
@@ -34,12 +34,12 @@
           </div>
         </app-card-accordion>
         <!-- category -->
-        <app-card-accordion cardAccordionId="collapseTwo" nextCardAccordionId="collapseThree" [stepAction]="isNewTask"
+        <app-card-accordion cardAccordionId="collapseTwo" nextCardAccordionId="collapseThree" [stepAction]="isNewNote"
                             (saveCard)="onSubmit()" #collapseTwo>
           <div header>
             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="false" aria-controls="collapseTwo">
-              <span *ngIf="isNewTask">Category</span>{{ note.category }}
+              <span *ngIf="isNewNote">Category</span>{{ note.category }}
             </button>
           </div>
           <div body>
@@ -52,7 +52,7 @@
           </div>
         </app-card-accordion>
         <!-- Repeat -->
-        <app-card-accordion cardAccordionId="collapseThree" nextCardAccordionId="collapseFour" [stepAction]="isNewTask"
+        <app-card-accordion cardAccordionId="collapseThree" nextCardAccordionId="collapseFour" [stepAction]="isNewNote"
                             (saveCard)="onSubmit()" #collapseThree>
           <div header>
             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree"
@@ -79,7 +79,7 @@
           <div header>
             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour"
                     aria-expanded="false" aria-controls="collapseFour">
-              <span *ngIf="isNewTask">Amount</span>{{ note.amount }}
+              <span *ngIf="isNewNote">Amount</span>{{ note.amount }}
             </button>
           </div>
           <div body>

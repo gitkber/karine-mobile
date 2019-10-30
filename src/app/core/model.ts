@@ -1,6 +1,6 @@
 export class HistoryNote {
   key: string;
-  taskKey: string;
+  noteKey: string;
   description: string;
   category: Category;
   hDate: string;

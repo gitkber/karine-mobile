@@ -16,13 +16,13 @@ export class FutureComponent implements OnInit {
   constructor(private noteService: NoteService, private router: Router) { }
 
   ngOnInit() {
-    this.noteService.futureList().subscribe(tasks => {
-      this.notes = tasks;
+    this.noteService.futureList().subscribe(notes => {
+      this.notes = notes;
     });
   }
 
-  consultTask(task: Note) {
-    this.router.navigate(['/consultTask', task.key]);
+  consultNote(note: Note) {
+    this.router.navigate(['/consultNote', note.key]);
   }
 
   getPath(category: Category) {

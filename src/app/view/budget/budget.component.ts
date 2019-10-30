@@ -26,8 +26,8 @@ export class BudgetComponent implements OnInit {
     return getPathOfCategory(category);
   }
 
-  consultTask(note: Note) {
-    this.router.navigate(['/consultTask', note.key]);
+  consultNote(note: Note) {
+    this.router.navigate(['/consultNote', note.key]);
   }
 
 }

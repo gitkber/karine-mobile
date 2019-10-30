@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class HistoryNoteService {
 
-  private dbPathHistory = '/historyTasks';
+  private dbPathHistory = '/historyNotes';
 
   private historyRef: AngularFireList<HistoryNote> = null;
 
@@ -18,9 +18,9 @@ export class HistoryNoteService {
     this.historyRef = db.list(this.dbPathHistory);
   }
 
-  historyNotesListByTask(taskKey: string): Observable<HistoryNote[]> {
+  historyNotesListByNote(noteKey: string): Observable<HistoryNote[]> {
     return this.snapshotChangesMap(this.db.list(this.dbPathHistory, query => {
-      return query.orderByChild('taskKey').equalTo(taskKey);
+      return query.orderByChild('noteKey').equalTo(noteKey);
     }));
   }
 
@@ -40,7 +40,7 @@ export class HistoryNoteService {
 
   createHistoryNote(note: Note, done: boolean) {
     const historyNote: HistoryNote = new HistoryNote();
-    historyNote.taskKey = note.key;
+    historyNote.noteKey = note.key;
     historyNote.description = note.description;
     historyNote.category = note.category;
     historyNote.done = done;

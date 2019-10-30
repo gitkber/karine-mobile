@@ -10,7 +10,7 @@
       <a class="circle-link float-right" (click)="backView()">
         <i class="fas fa-times"></i>
       </a>
-      <a *ngIf="note" class="circle-link float-right" [routerLink]="['/editTask', note.key]">
+      <a *ngIf="note" class="circle-link float-right" [routerLink]="['/editNote', note.key]">
         <i class="fas fa-pencil-alt"></i>
       </a>
     </div>

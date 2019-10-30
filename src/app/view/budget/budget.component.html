@@ -2,7 +2,7 @@
   <div card-left class="card selected">
     <div style="padding: 0 0.2em 0 0.2em;">
       <div>Budget</div>
-<!--      <div *ngIf="historyTasks">Total : {{historyTasks.length}}</div>-->
+<!--      <div *ngIf="historyNotes">Total : {{historyNotes.length}}</div>-->
     </div>
   </div>
   <div action>
@@ -13,15 +13,15 @@
 </app-toolbar>
 
 <div class="container-fluid">
-<!--  <div *ngIf="tasks" [@listStagger]='tasks.length'>-->
+<!--  <div *ngIf="notes" [@listStagger]='notes.length'>-->
   <div *ngIf="notes">
     <div class="card shadow-sm mb-2" *ngFor="let note of notes">
       <div class="card-body">
         <div class="row align-items-center">
-          <div class="col-2" (click)="consultTask(note)">
+          <div class="col-2" (click)="consultNote(note)">
             <app-category-icon [srcImg]="getPath(note.category)"></app-category-icon>
           </div>
-          <div class="col-8" (click)="consultTask(note)">
+          <div class="col-8" (click)="consultNote(note)">
             <div class="card-title">{{ note.description }}</div>
           </div>
           <div class="col-2">

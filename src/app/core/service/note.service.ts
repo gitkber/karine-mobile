@@ -10,7 +10,7 @@ import { Note } from '../model';
 })
 export class NoteService {
 
-  private dbPathNotes = '/tasks';
+  private dbPathNotes = '/notes';
 
   presentNotesRef: AngularFireList<Note> = null;
   futureNotesRef: AngularFireList<Note> = null;

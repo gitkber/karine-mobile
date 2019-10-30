@@ -12,14 +12,14 @@
     </div>
   </div>
   <div action>
-    <a class="circle-link" [routerLink]="['/editTask', '0']">
+    <a class="circle-link" [routerLink]="['/editNote', '0']">
       <i class="fas fa-plus"></i>
     </a>
   </div>
 </app-toolbar>
 
 <div class="container-fluid">
-<!--  <div *ngIf="tasks" [@listStagger]='tasks.length'>-->
+<!--  <div *ngIf="notes" [@listStagger]='notes.length'>-->
   <div *ngIf="notes">
     <div class="card shadow-sm mb-2" *ngFor="let note of notes">
       <div class="card-body">

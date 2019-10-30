@@ -14,8 +14,8 @@ export class PastComponent implements OnInit {
   constructor(private historyNoteService: HistoryNoteService) { }
 
   ngOnInit() {
-    this.historyNoteService.doneHistoryNotesList().subscribe(historyTasks => {
-      this.historyNotes = historyTasks;
+    this.historyNoteService.doneHistoryNotesList().subscribe(historyNotes => {
+      this.historyNotes = historyNotes;
     });
   }
 

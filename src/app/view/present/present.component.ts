@@ -61,7 +61,7 @@ export class PresentComponent implements OnInit {
   }
 
   consultNote(note: Note) {
-    this.router.navigate(['/consultTask', note.key]);
+    this.router.navigate(['/consultNote', note.key]);
   }
 
   goFuture() {
