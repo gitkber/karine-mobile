@@ -43,12 +43,24 @@
             </button>
           </div>
           <div body>
+
             <div *ngFor="let item of allCategory()">
               <label>
                 <input type="radio" value="{{ item }}" formControlName="category">
                 <span>{{ item }}</span>
               </label>
             </div>
+
+            <label formArrayName="tagList" *ngFor="let order of formGroup.controls.tagList.controls; let i = index">
+              <input type="checkbox" [formControlName]="i">
+              {{allTag()[i]}}
+            </label>
+
+<!--            <div *ngFor="let n of formGroup.controls.tagList.controls; let i = index">-->
+<!--              <input type="checkbox" [formControl]="n">-->
+<!--              {{allTag()[i]}}-->
+<!--            </div>-->
+
           </div>
         </app-card-accordion>
         <!-- Repeat -->

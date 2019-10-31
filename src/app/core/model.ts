@@ -46,11 +46,11 @@ export enum Repeat {
 export function getPathOfCategory(category: Category): string {
   switch (category) {
     case Category.TASK:
-      return '../../../../assets/img/category/budget_car_32.png';
+      return '../../../../assets/img/category/list_32.png';
     case Category.OBJECTIVE:
-      return '../../../../assets/img/category/objective_target_32.png';
+      return '../../../../assets/img/category/goal_32.png';
     case Category.BUDGET:
-      return '../../../../assets/img/category/budget_house2_32.png';
+      return '../../../../assets/img/category/euro_32.png';
   }
   return '';
 }

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { DateToStringPipe } from '../../shared/pipe/date-to-string.pipe';
-import { Category, Repeat, Note } from '../../core/model';
+import { Category, Note, Repeat, Tag } from '../../core/model';
 import { NoteService } from '../../core/service/note.service';
 
 @Component({
@@ -45,14 +45,27 @@ export class EditNoteComponent implements OnInit {
       key: [this.note.key],
       description: [this.note.description, Validators.required],
       category: [this.note.category, Validators.required],
+      tagList: new FormArray([]),
       repeat: [this.note.repeat, Validators.required],
       extraRepeat: [this.note.extraRepeat],
       amount: [this.note.amount]
+    });
+    this.addCheckboxes();
+  }
+
+  private addCheckboxes() {
+    Object.keys(Tag).forEach((o, i) => {
+      const control = new FormControl(this.note.tagList.findIndex(n => n === o) > -1);
+      (this.formGroup.controls.tagList as FormArray).push(control);
     });
   }
 
   allCategory() {
     return Object.keys(Category);
+  }
+
+  allTag() {
+    return Object.keys(Tag);
   }
 
   allRepeat() {
@@ -70,6 +83,9 @@ export class EditNoteComponent implements OnInit {
     this.note.extraRepeat = this.formGroup.controls.extraRepeat.value;
     this.note.nextRepeat = this.dateToStringPipe.transform(new Date());
     this.note.amount = this.formGroup.controls.amount.value;
+    this.note.tagList = this.formGroup.value.tagList
+      .map((v, i) => v ? Object.keys(Tag)[i] : null)
+      .filter(v => v !== null);
 
     if (this.isNewNote) {
       this.noteService.createNote(this.note);
@@ -80,7 +96,8 @@ export class EditNoteComponent implements OnInit {
           category: this.note.category,
           repeat: this.note.repeat,
           extraRepeat: this.note.extraRepeat,
-          amount: this.note.amount
+          amount: this.note.amount,
+          tagList: this.note.tagList
         })
         .catch(err => console.log(err));
     }

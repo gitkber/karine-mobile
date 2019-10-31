@@ -1,0 +1,67 @@
+{
+  "tasks" : {
+    "-LnHIOlHbLxK1KDU1l1A" : {
+      "category" : "WELLNESS",
+      "description" : "Vitamines",
+      "nextRepeat" : "2019-09-14 03:09:42",
+      "repeat" : "ALL_DAY"
+    },
+    "-LnHITZPiw5BhsQSQ2B_" : {
+      "category" : "WELLNESS",
+      "description" : "Shampooing",
+      "extraRepeat" : "4",
+      "nextRepeat" : "2019-09-13 03:09:22",
+      "repeat" : "EVERY_X_DAYS"
+    },
+    "-LnRn0C3T-GamqAtHNld" : {
+      "category" : "HOME",
+      "description" : "Payer syndicat",
+      "nextRepeat" : "2019-09-13 03:09:06",
+      "repeat" : "ONE_BY_MONTH"
+    },
+    "-LnRn9J7XtKGgP49ky0z" : {
+      "category" : "HOME",
+      "description" : "Relever courrier",
+      "nextRepeat" : "2019-09-20 03:09:46",
+      "repeat" : "ONE_BY_WEEK"
+    },
+    "-LnRzCw8A348H8uWDEej" : {
+      "category" : "OBJECTIVE",
+      "description" : "Développer une heure par jour",
+      "nextRepeat" : "2019-09-13 03:09:19",
+      "repeat" : "ALL_DAY"
+    },
+    "-LnRzi69kgKqT8E6aJpt" : {
+      "category" : "OBJECTIVE",
+      "description" : "Rangement une heure par jour",
+      "nextRepeat" : "2019-10-30 12:32:46",
+      "repeat" : "ALL_DAY"
+    },
+    "-LnS-5H4gyap0qiU2vrg" : {
+      "category" : "OTHER",
+      "description" : "A déterminer",
+      "nextRepeat" : "2019-09-13 03:08:47",
+      "repeat" : "ALL_DAY"
+    },
+    "-LnWOifUt9FdnTmudFPM" : {
+      "category" : "OBJECTIVE",
+      "description" : "aaabbbbccccc",
+      "extraRepeat" : "3",
+      "nextRepeat" : "2019-12-13 03:11:00",
+      "repeat" : "EVERY_X_MOIS"
+    },
+    "-LnWx2Ndpvm8Zz71LMBs" : {
+      "category" : "TRANSPORT",
+      "description" : "essence",
+      "nextRepeat" : "2019-09-20 03:10:58",
+      "repeat" : "ONE_BY_WEEK"
+    },
+    "-LrhtGWHV9RjDY6-lEhp" : {
+      "amount" : "121",
+      "category" : "HOME",
+      "description" : "test amount",
+      "nextRepeat" : "2019-10-21 12:37:57",
+      "repeat" : "ONCE"
+    }
+  }
+}
