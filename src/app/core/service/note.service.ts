@@ -3,19 +3,19 @@ import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angula
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { DateToStringPipe } from '../../shared/pipe/date-to-string.pipe';
-import { Note } from '../model';
+import { Category, Note, Repeat } from '../model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NoteService {
 
-  private dbPathNotes = '/notes';
-
   todayNotesRef: AngularFireList<Note> = null;
   toComeUpNotesRef: AngularFireList<Note> = null;
   budgetNotesRef: AngularFireList<Note> = null;
+  taskNotesRef: AngularFireList<Note> = null;
   notesRef: AngularFireList<Note> = null;
+  private dbPathNotes = '/notes';
 
   constructor(private db: AngularFireDatabase, private dateToStringPipe: DateToStringPipe) {
     const today: Date = new Date();
@@ -28,7 +28,10 @@ export class NoteService {
       return ref.orderByChild('nextRepeat').startAt(this.dateToStringPipe.transform(today));
     });
     this.budgetNotesRef = this.db.list(this.dbPathNotes, ref => {
-      return ref.orderByChild('amount').startAt(0);
+      return ref.orderByChild('category').equalTo(Category.BUDGET);
+    });
+    this.taskNotesRef = this.db.list(this.dbPathNotes, ref => {
+      return ref.orderByChild('category').equalTo(Category.TASK);
     });
 
     this.notesRef = db.list(this.dbPathNotes);
@@ -37,9 +40,9 @@ export class NoteService {
   todayNoteList(): Observable<Note[]> {
     return this.todayNotesRef.snapshotChanges().pipe(
       map(changes =>
-        changes.map(c =>
-          ({key: c.payload.key, ...c.payload.val()})
-        )
+        changes
+          .map(c => ({key: c.payload.key, ...c.payload.val()}))
+          .filter(e => e.repeat !== Repeat.ONCE)
       )
     );
   }
@@ -60,6 +63,16 @@ export class NoteService {
         changes.map(c =>
           ({key: c.payload.key, ...c.payload.val()})
         )
+      )
+    );
+  }
+
+  taskList(): Observable<Note[]> {
+    return this.taskNotesRef.snapshotChanges().pipe(
+      map(changes =>
+        changes
+          .map(c => ({key: c.payload.key, ...c.payload.val()}))
+          .filter(e => e.repeat === Repeat.ONCE)
       )
     );
   }

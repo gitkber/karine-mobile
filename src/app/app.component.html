@@ -1,8 +1,9 @@
 <div id="mySidenav" class="sidenav" #mySidenav>
   <a class="close" (click)="closeNav()">&times;</a>
   <a>About</a>
-  <a [routerLink]="['/done-notes']" (click)="closeNav()">Tâches terminées</a>
   <a [routerLink]="['/budget']" (click)="closeNav()">Budget</a>
+  <a [routerLink]="['/task']" (click)="closeNav()">Tâches</a>
+  <a [routerLink]="['/done-notes']" (click)="closeNav()">Tâches terminées</a>
 </div>
 
 <header>

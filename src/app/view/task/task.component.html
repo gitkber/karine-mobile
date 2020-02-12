@@ -1,0 +1,15 @@
+<app-toolbar>
+  <div card-left class="card selected">
+    <div style="padding: 0 0.2em 0 0.2em;">
+      <div>Tâches</div>
+      <div *ngIf="notes">Total : {{notes.length}}</div>
+    </div>
+  </div>
+  <div action>
+    <a class="circle-link float-right" [routerLink]="['/']">
+      <i class="fas fa-times"></i>
+    </a>
+  </div>
+</app-toolbar>
+
+<app-note-list [notes]="notes"></app-note-list>
