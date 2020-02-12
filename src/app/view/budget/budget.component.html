@@ -12,27 +12,4 @@
   </div>
 </app-toolbar>
 
-<div class="container-fluid">
-<!--  <div *ngIf="notes" [@listStagger]='notes.length'>-->
-  <div *ngIf="notes">
-    <div class="card shadow-sm mb-2" *ngFor="let note of notes">
-      <div class="card-body">
-        <div class="row align-items-center">
-          <div class="col-2" (click)="consultNote(note)">
-            <app-category-icon [srcImg]="getPath(note.tagList)"></app-category-icon>
-          </div>
-          <div class="col-8" (click)="consultNote(note)">
-            <div class="card-title">{{ note.description }}</div>
-          </div>
-          <div class="col-2">
-<!--            <i class="fa fa-thumbs-up"></i>-->
-            {{ note.amount }}
-          </div>
-        </div>
-      </div>
-      <div class="card-footer">
-        <div class="card-subtitle text-muted">{{ note.nextRepeat | stringToDate | date : 'EEEE, d MMMM yyyy' }}</div>
-      </div>
-    </div>
-  </div>
-</div>
+<app-note-list [notes]="notes"></app-note-list>

@@ -43,6 +43,7 @@ export class HistoryNoteService {
     historyNote.noteKey = note.key;
     historyNote.description = note.description;
     historyNote.category = note.category;
+    historyNote.tagList = note.tagList;
     historyNote.done = done;
     historyNote.hDate = this.dateToStringPipe.transform(new Date());
     this.historyRef.push(historyNote);

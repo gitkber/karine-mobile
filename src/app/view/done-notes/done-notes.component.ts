@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HistoryNoteService } from '../../core/service/history-note.service';
-import { Category, getPathOfCategory, HistoryNote } from '../../core/model';
+import { Category, getPathOfCategory, getPathOfFirstTag, HistoryNote, Tag } from '../../core/model';
 
 @Component({
   selector: 'app-done-notes',
@@ -19,7 +19,7 @@ export class DoneNotesComponent implements OnInit {
     });
   }
 
-  getPath(category: Category) {
-    return getPathOfCategory(category);
+  getPath(tagList: Tag[]) {
+    return getPathOfFirstTag(tagList);
   }
 }

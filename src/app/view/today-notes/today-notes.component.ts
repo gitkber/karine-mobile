@@ -52,22 +52,6 @@ export class TodayNotesComponent implements OnInit {
     });
   }
 
-  getPath(tagList: Tag[]) {
-    return getPathOfFirstTag(tagList);
-  }
-
-  getPathCategory(category: Category) {
-    return getPathOfCategory(category);
-  }
-
-  acceptNote(note: Note) {
-    this.facadeService.acceptNote(note);
-  }
-
-  consultNote(note: Note) {
-    this.router.navigate(['/consultNote', note.key]);
-  }
-
   goFuture() {
     this.facadeService.noteService.toComeUpList().subscribe(notes => {
       this.notes = notes;

@@ -17,17 +17,19 @@
     <div class="card-body">
       <div class="row align-items-center">
         <div class="col-2">
-          <app-category-icon [srcImg]="getPath(historyNote.ta)"></app-category-icon>
+          <app-category-icon [srcImg]="getPath(historyNote.tagList)"></app-category-icon>
         </div>
         <div class="col-8">
           <div class="card-title">{{ historyNote.description }}</div>
         </div>
         <div class="col-1">
-          <!--          <i class="fa fa-thumbs-up"></i>-->
         </div>
       </div>
     </div>
-    <div class="card-footer">
+    <div class="card-footer"
+         [class.objective]="historyNote.category.valueOf() == 'OBJECTIVE'"
+         [class.budget]="historyNote.category.valueOf() == 'BUDGET'"
+         [class.task]="historyNote.category.valueOf() == 'TASK'">
       <div class="card-subtitle text-muted">{{ historyNote.hDate | stringToDate | date : 'EEEE, d MMMM yyyy' }}</div>
     </div>
   </div>

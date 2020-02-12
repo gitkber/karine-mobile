@@ -1,8 +1,9 @@
 export class HistoryNote {
   key: string;
   noteKey: string;
-  description: string;
   category: Category;
+  description: string;
+  tagList: Tag[] = [];
   hDate: string;
   done: boolean;
 }
