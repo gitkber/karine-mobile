@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { Category, getPathOfCategory, HistoryNote, Note } from '../../core/model';
+import { getPathOfFirstTag, HistoryNote, Note, Tag } from '../../core/model';
 import { FacadeService } from '../../core/service/facade.service';
 
 @Component({
@@ -31,8 +31,8 @@ export class ConsultNoteComponent implements OnInit {
     });
   }
 
-  getPath(category: Category) {
-    return getPathOfCategory(category);
+  getPath(tagList: Tag[]) {
+    return getPathOfFirstTag(tagList);
   }
 
   backView() {

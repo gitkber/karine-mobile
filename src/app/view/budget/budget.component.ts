@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FacadeService } from '../../core/service/facade.service';
-import { Category, getPathOfCategory, Note } from '../../core/model';
+import { getPathOfFirstTag, Note, Tag } from '../../core/model';
 import { Router } from '@angular/router';
 
 @Component({
@@ -22,8 +22,8 @@ export class BudgetComponent implements OnInit {
     });
   }
 
-  getPath(category: Category) {
-    return getPathOfCategory(category);
+  getPath(tagList: Tag[]) {
+    return getPathOfFirstTag(tagList);
   }
 
   consultNote(note: Note) {

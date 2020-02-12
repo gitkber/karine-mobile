@@ -55,7 +55,7 @@ export class EditNoteComponent implements OnInit {
 
   private addCheckboxes() {
     Object.keys(Tag).forEach((o, i) => {
-      const control = new FormControl(this.note.tagList.findIndex(n => n === o) > -1);
+      const control = new FormControl(this.note.tagList === undefined ? false : this.note.tagList.findIndex(n => n === o) > -1);
       (this.formGroup.controls.tagList as FormArray).push(control);
     });
   }

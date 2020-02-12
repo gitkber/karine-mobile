@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Category, getPathOfCategory, Note } from '../../core/model';
+import { getPathOfFirstTag, Note, Tag } from '../../core/model';
 import { NoteService } from '../../core/service/note.service';
 
 @Component({
@@ -25,7 +25,7 @@ export class ToComeUpNotesComponent implements OnInit {
     this.router.navigate(['/consultNote', note.key]);
   }
 
-  getPath(category: Category) {
-    return getPathOfCategory(category);
+  getPath(tagList: Tag[]) {
+    return getPathOfFirstTag(tagList);
   }
 }

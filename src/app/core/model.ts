@@ -29,6 +29,7 @@ export enum Tag {
   TRANSPORT = 'TRANSPORT',
   WELLNESS = 'WELLNESS',
   MEDICAL = 'MEDICAL',
+  PROFESSIONAL = 'PROFESSIONAL',
   OTHER = 'OTHER',
 }
 
@@ -55,6 +56,14 @@ export function getPathOfCategory(category: Category): string {
   return '';
 }
 
+export function getPathOfFirstTag(tagList: Tag[]): string {
+  if (tagList === undefined) {
+
+  } else {
+    return getPathOfTag(tagList[0]);
+  }
+}
+
 export function getPathOfTag(tag: Tag): string {
   switch (tag) {
     case Tag.HOME:
@@ -65,6 +74,8 @@ export function getPathOfTag(tag: Tag): string {
       return '../../../../assets/img/category/health_prenatal_32.png';
     case Tag.MEDICAL:
       return '../../../../assets/img/category/objective_target_32.png';
+    case Tag.PROFESSIONAL:
+      return '../../../../assets/img/category/work_portfolio_32.png';
     case Tag.OTHER:
       return '../../../../assets/img/category/other_catalog_32.png';
   }

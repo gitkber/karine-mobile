@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { animate, query, stagger, style, transition, trigger } from '@angular/animations';
-import { Category, getPathOfCategory, Note } from '../../core/model';
+import { Category, getPathOfCategory, getPathOfFirstTag, Note, Tag } from '../../core/model';
 import { FacadeService } from '../../core/service/facade.service';
 
 @Component({
@@ -52,7 +52,11 @@ export class TodayNotesComponent implements OnInit {
     });
   }
 
-  getPath(category: Category) {
+  getPath(tagList: Tag[]) {
+    return getPathOfFirstTag(tagList);
+  }
+
+  getPathCategory(category: Category) {
     return getPathOfCategory(category);
   }
 
