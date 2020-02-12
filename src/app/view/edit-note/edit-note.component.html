@@ -51,7 +51,7 @@
               </label>
             </div>
 
-            <label formArrayName="tagList" *ngFor="let order of formGroup.controls.tagList.controls; let i = index">
+            <label formArrayName="tagList" *ngFor="let order of formGroup.controls.tagList['controls']; let i = index">
               <input type="checkbox" [formControlName]="i">
               {{allTag()[i]}}
             </label>

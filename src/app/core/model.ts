@@ -73,7 +73,7 @@ export function getPathOfTag(tag: Tag): string {
     case Tag.WELLNESS:
       return '../../../../assets/img/category/health_prenatal_32.png';
     case Tag.MEDICAL:
-      return '../../../../assets/img/category/objective_target_32.png';
+      return '../../../../assets/img/category/health_first-aid-kit_32.png';
     case Tag.PROFESSIONAL:
       return '../../../../assets/img/category/work_portfolio_32.png';
     case Tag.OTHER:
