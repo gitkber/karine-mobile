@@ -10,9 +10,10 @@ import { TodayNotesComponent } from './today-notes/today-notes.component';
 import { DoneNotesComponent } from './done-notes/done-notes.component';
 import { ConsultNoteComponent } from './consult-note/consult-note.component';
 import { EditNoteComponent } from './edit-note/edit-note.component';
-import { BudgetComponent } from './budget/budget.component';
 import { NoteListComponent } from './note-list/note-list.component';
 import { TaskComponent } from './task/task.component';
+import { BudgetComponent } from './budget/budget.component';
+import { BudgetMonthComponent } from './budget-month/budget-month.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TaskComponent } from './task/task.component';
     EditNoteComponent,
     BudgetComponent,
     NoteListComponent,
-    TaskComponent
+    TaskComponent,
+    BudgetMonthComponent
   ],
   exports: [
     TodayNotesComponent,

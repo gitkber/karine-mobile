@@ -33,6 +33,17 @@
   margin-left: 50px;
 }
 
+footer {
+  position: fixed;
+  /*left: 0;*/
+  bottom: 0;
+  width: 100%;
+  /*background-color: red;*/
+  /*color: white;*/
+  text-align: center;
+  z-index: -999;
+}
+
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}

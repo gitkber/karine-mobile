@@ -7,6 +7,7 @@ import { ConsultNoteComponent } from './consult-note/consult-note.component';
 import { EditNoteComponent } from './edit-note/edit-note.component';
 import { BudgetComponent } from './budget/budget.component';
 import { TaskComponent } from './task/task.component';
+import { BudgetMonthComponent } from './budget-month/budget-month.component';
 
 const routes: Routes = [
   {path: 'today-notes', component: TodayNotesComponent, data: {animation: 'Present'}},
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: 'consultNote/:id', component: ConsultNoteComponent, data: {animation: 'Consult'}},
   {path: 'editNote/:id', component: EditNoteComponent, data: {animation: 'Edit'}},
   {path: 'budget', component: BudgetComponent, data: {animation: 'Consult'}},
+  {path: 'budget-month', component: BudgetMonthComponent},
   {path: 'task', component: TaskComponent, data: {animation: 'Past'}}
 ];
 

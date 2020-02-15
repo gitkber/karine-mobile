@@ -1,0 +1,25 @@
+<app-toolbar>
+  <div card-left class="card selected">
+    <div style="padding: 0 0.2em 0 0.2em;">
+      <div>Budget pour le mois de {{ today | date: 'MMMM' }}</div>
+      <!--      <div *ngIf="historyNotes">Total : {{historyNotes.length}}</div>-->
+    </div>
+  </div>
+  <div action>
+    <a class="circle-link float-right" [routerLink]="['/budget-month']">
+      <i class="fas fa-arrow-right"></i>
+    </a>
+    <a class="circle-link float-right" [routerLink]="['/budget']">
+      <i class="fas fa-times"></i>
+    </a>
+    <a class="circle-link float-right" [routerLink]="['/budget-month']">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+  </div>
+</app-toolbar>
+
+<p>budget-month works!</p>
+
+<div *ngFor="let note of notes">
+  {{note.tagList[0]}} {{note.description}} - {{note.amount}}
+</div>
