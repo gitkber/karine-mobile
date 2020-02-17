@@ -8,6 +8,16 @@ export class HistoryNote {
   done: boolean;
 }
 
+export class Budget {
+  key: string;
+  description: string;
+  tag: Tag;
+  day: number;
+  month: number;
+  year: number;
+  amount: number;
+}
+
 export class Note {
   key: string;
   category: Category;

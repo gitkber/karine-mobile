@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { NoteService } from './note.service';
 import { HistoryNoteService } from './history-note.service';
 import { DateToStringPipe } from '../../shared/pipe/date-to-string.pipe';
-import { Note, Repeat } from '../model';
+import { Budget, Category, Note, Repeat } from '../model';
+import { BudgetService } from './budget.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class FacadeService {
   constructor(
     public noteService: NoteService,
     public historyNoteService: HistoryNoteService,
+    public budgetService: BudgetService,
     private dateToStringPipe: DateToStringPipe
   ) { }
 
@@ -19,6 +21,10 @@ export class FacadeService {
     const nextDate: Date = this.calculateNextDate(new Date(), note.repeat, note.extraRepeat);
 
     this.historyNoteService.createHistoryNote(note, nextDate == null);
+
+    if (note.category === Category.BUDGET) {
+      this.budgetService.createBudget(this.createBudget(note));
+    }
 
     if (nextDate === null) {
       // remove note
@@ -58,4 +64,15 @@ export class FacadeService {
     }
   }
 
+  private createBudget(note: Note): Budget {
+    const today: Date = new Date();
+    const budget: Budget = new Budget();
+    budget.month = today.getMonth();
+    budget.year = today.getFullYear();
+    budget.day = today.getDay();
+    budget.description = note.description;
+    budget.amount = note.amount;
+    budget.tag = note.tagList[0];
+    return budget;
+  }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Note } from '../../core/model';
+import { Budget, Note } from '../../core/model';
 import { FacadeService } from '../../core/service/facade.service';
 
 @Component({
@@ -11,15 +11,15 @@ export class BudgetMonthComponent implements OnInit {
 
   today: Date = new Date();
 
-  notes: Note[];
-  notesSize: number;
+  budgets: Budget[];
 
-  constructor(private facadeService: FacadeService) { }
+  constructor(private facadeService: FacadeService) {
+    this.today.setHours(23, 59, 59);
+  }
 
   ngOnInit() {
-    this.facadeService.noteService.budgetList().subscribe(notes => {
-      this.notes = notes;
-      this.notesSize = notes.length;
+    this.facadeService.budgetService.budgetList(this.today.getFullYear(), this.today.getMonth()).subscribe(notes => {
+      this.budgets = notes;
     });
   }
 
