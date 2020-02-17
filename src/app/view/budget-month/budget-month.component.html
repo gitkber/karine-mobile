@@ -20,6 +20,10 @@
 
 <p>budget-month works!</p>
 
-<div *ngFor="let note of budgets">
-  {{note.tag}} {{note.description}} - {{note.amount}}
+<div *ngFor="let budgetTag of map | keyvalue">
+  {{budgetTag.value.tag}} - {{budgetTag.value.sum}}
+  <h5 *ngFor="let b of budgetTag.value.budgetList">
+    {{b.description}} - {{b.amount}}
+  </h5>
 </div>
+

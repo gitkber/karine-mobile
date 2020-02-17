@@ -8,6 +8,22 @@ export class HistoryNote {
   done: boolean;
 }
 
+// export class BudgetYear {
+//   year: number;
+//   monthList: BudgetMonth[] = [];
+// }
+//
+// export class BudgetMonth {
+//   month: number;
+//   tagList: BudgetTag[] = [];
+// }
+
+export class BudgetTag {
+  tag: Tag;
+  sum: number = 0;
+  budgetList: Budget[] = [];
+}
+
 export class Budget {
   key: string;
   description: string;
