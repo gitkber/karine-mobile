@@ -35,6 +35,10 @@ export class ConsultNoteComponent implements OnInit {
     return getPathOfFirstTag(tagList);
   }
 
+  refuseNote() {
+    this.facadeService.refuseNote(this.note);
+  }
+
   backView() {
     this.location.back();
   }

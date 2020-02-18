@@ -36,6 +36,13 @@ export class FacadeService {
     }
   }
 
+  refuseNote(note: Note) {
+    const nextDate: Date = this.calculateNextDate(new Date(), note.repeat, note.extraRepeat);
+    // save next date
+    note.nextRepeat = this.dateToStringPipe.transform(nextDate);
+    this.noteService.updateNote(note.key, {nextRepeat: note.nextRepeat}).catch(err => console.log(err));
+  }
+
   private calculateNextDate(today: Date, repeat: Repeat, extraRepeat: string): Date {
     switch (repeat) {
       case Repeat.ONCE:
@@ -75,4 +82,5 @@ export class FacadeService {
     budget.tag = note.tagList[0];
     return budget;
   }
+
 }
